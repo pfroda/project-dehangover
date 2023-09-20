@@ -6,7 +6,7 @@ const typeController = require('../controllers/typeController');
 
 
 
-// Add and get drinks
+// Search for types of drinks
 router.get('/type', typeController.getTypes);
 
 module.exports = router;

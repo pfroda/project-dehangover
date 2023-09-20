@@ -4,9 +4,10 @@ const router = express.Router();
 const drinkController = require('../controllers/drinkController');
 
 
-
-
-// Add and get drinks
+// Add, delete, update and get user drinks
 router.post('/drinks', drinkController.postDrink);
+router.delete('/drinks/:id', drinkController.deleteDrink);
+router.put('/drinks/:id', drinkController.updateDrinkNum);
+router.get('/drinks/:id', drinkController.getUserDrinks);
 
 module.exports = router;
