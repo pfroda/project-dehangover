@@ -1,4 +1,4 @@
-const Drink = require('./Drink');
+const Types = require('./Type');
 
 
 // Define an array of drink types (predefined drinks with data) and add them to db; don't allow duplicates
@@ -147,7 +147,7 @@ const drinkTypes = [
 
 for (let drink of drinkTypes) {
   try {
-    await Drink.updateOne({ name: drink.name }, drink, { upsert: true, multi: true });
+    await Types.updateOne({ name: drink.name }, drink, { upsert: true, multi: true });
     console.log(`Added ${drink.name} to db`);
 
     } catch (error) {

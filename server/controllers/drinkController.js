@@ -2,6 +2,7 @@ const Drink = require('../models/Drink');
 
 async function postDrink(req, res) {
   try {
+    console.log('Drinking...')
     const newDrink = await Drink.create(req.body);
     res.status(201).json(newDrink)
 
