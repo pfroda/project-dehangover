@@ -50,4 +50,5 @@ async function getUserDrinks (req, res) {
     res.status(500).json({error: 'Internal server error'})
   }
 }
+
 module.exports = {postDrink, updateDrinkNum, deleteDrink, getUserDrinks}

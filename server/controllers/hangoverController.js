@@ -10,6 +10,18 @@ async function postHangover(req, res) {
     console.log(err);
     res.status(500).json({error: 'Internal server error'})
   }
-}
+};
 
-module.exports = {postHangover}
+async function getUserHangovers (req, res) {
+    try {
+      console.log('Getting user hangovers...');
+      const userHangovers = await Hangover.find({user: req.params.id});
+      res.status(201).json(userHangovers)
+  
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({error: 'Internal server error'})
+    }
+  }
+
+module.exports = {postHangover, getUserHangovers}

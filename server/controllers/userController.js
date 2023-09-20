@@ -36,7 +36,18 @@ async function loginUser (req, res) {
     console.log(error);
     res.status(500).json({error: 'Internal server error'})
   }
+};
+
+async function findUser (req, res) {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) res.status(400).json({message: 'User not found'});
+    res.status(200).json(user._id)
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({error: 'Internal server error'})
+  }
 }
 
 
-module.exports = {createUser, loginUser}
+module.exports = {createUser, loginUser, findUser}
