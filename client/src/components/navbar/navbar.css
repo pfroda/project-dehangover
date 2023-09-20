@@ -1,0 +1,30 @@
+.Navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+}
+
+.navbar-icons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-icons a {
+    text-decoration: none;
+    background-color: transparent;
+}
+.navbar-icons svg {
+    height: 50px;
+}
+
+.navbar-icons svg path {
+    transition: fill 0.2s;
+}
+
+.navbar-icons a.active svg path{
+    fill: var(--yellow-strong)
+}

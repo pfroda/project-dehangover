@@ -14,7 +14,7 @@ async function postHangover(req, res) {
 
 async function getUserHangovers (req, res) {
     try {
-      console.log('Getting user hangovers...');
+      console.log('Getting hangovers...');
       const userHangovers = await Hangover.find({user: req.params.id});
       res.status(201).json(userHangovers)
   
