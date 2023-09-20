@@ -7,6 +7,6 @@ const drinkController = require('../controllers/drinkController');
 
 
 // Add and get drinks
-router.post('/stats', drinkController.postDrink);
+router.post('/drinks', drinkController.postDrink);
 
 module.exports = router;
