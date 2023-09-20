@@ -1,0 +1,17 @@
+.Signup_form {
+    background-color: var(--yellow-pale);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.signup-form button {
+    width: 100%;
+}
