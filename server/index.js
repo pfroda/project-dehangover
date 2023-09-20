@@ -14,10 +14,13 @@ app.use(express.json());
 // routes
 const userRoutes = require('./routes/userRoutes');
 const drinkRoutes = require('./routes/drinkRoutes');
-const hangoverRoutes = require('./routes/hangoverRoutes')
+const hangoverRoutes = require('./routes/hangoverRoutes');
+const typeRoutes = require('./routes/typeRoutes')
+
 app.use('/api', userRoutes);
 app.use('/api', drinkRoutes)
 app.use('/api', hangoverRoutes);
+app.use('/api', typeRoutes)
 
 
 // server running
