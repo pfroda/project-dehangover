@@ -16,7 +16,10 @@ const userSchema = mongoose.Schema({
   firstName: {
     type: String,
     required: true
-  }
+  },
+  
+}, {
+    timestamps: true
 });
 
 // // encrypting password - fire a function before doc saved to db

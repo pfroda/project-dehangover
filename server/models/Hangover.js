@@ -4,9 +4,6 @@ const hangoverSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true
   },
-  drinksConsumed: {
-    type: mongoose.Schema.Types.ObjectId, ref: 'DrinksConsumed', required: true
-  },
   hangoverScore: {
     type: Number,
     required: true,
@@ -20,6 +17,8 @@ const hangoverSchema = new mongoose.Schema({
     type: Date,
     required: true
   }
+}, {
+  timestamps: true
 });
 
 const Hangover = mongoose.model('Hangover', hangoverSchema);
