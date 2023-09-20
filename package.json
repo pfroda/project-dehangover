@@ -1,0 +1,11 @@
+{
+  "name": "project-dehangover",
+  "version": "1.0.0",
+  "description": "codeworks solo project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pfroda",
+  "license": "ISC"
+}
