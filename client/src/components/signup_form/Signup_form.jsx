@@ -14,7 +14,7 @@ function Signup_form() {
     }
 
     await createUser(userData);
-    // event.target.reset;
+    event.target.reset();
   }
 
   return (
@@ -24,7 +24,7 @@ function Signup_form() {
 
         <input type="text" name='firstName' required={true} placeholder="Name"/>
         <input type="email" name="email" required={true} placeholder='Email' />
-        <input type="text" name="password" required={true} placeholder='Password'/>
+        <input type="password" name="password" required={true} placeholder='Password'/>
         <button type="submit">Sign up</button>
 
       </form>
