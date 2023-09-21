@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { getTypes } from '../../services/apiType';
 import { postDrink } from '../../services/apiDrink';
+import './searchbar.css'
 
 function TypeSearch({ onTypeSelect }) {
   const [searchQuery, setSearchQuery] = useState('');
@@ -62,8 +63,6 @@ function TypeSearch({ onTypeSelect }) {
   );
 }
 
-// Rest of your components and code...
-
 
 function DrinkForm({ selectedType, onSubmit }) {
   const [numConsumptions, setNumConsumptions] = useState(1);
@@ -86,15 +85,20 @@ function DrinkForm({ selectedType, onSubmit }) {
 
   return (
     selectedType && (
-      <div>
-        <p>Selected Type: {selectedType.name}</p>
-        <input
+      <div className="selected-type">
+        <div className="selected-type-img">
+        <img src={`/assets/drinks/${selectedType.imageUrl}`} alt="Beer" />
+        </div>
+
+        <p>{selectedType.name}</p>
+        <input className="numConsumptions"
           type="number"
           placeholder="Number of Consumptions"
           value={numConsumptions}
+          min="1"
           onChange={(e) => setNumConsumptions(e.target.value)}
         />
-        <button onClick={handleDrinkSubmission}>Add Drink</button>
+        <button onClick={handleDrinkSubmission}>Drink</button>
       </div>
     )
   );

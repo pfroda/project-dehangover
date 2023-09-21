@@ -66,3 +66,35 @@
   #clearBtn {
     cursor: pointer;
   }
+
+  .selected-type {
+    border: 2px solid var(--yellow-strong); /* Add your preferred border styles */
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f0f0f0; /* Add your preferred background color */
+  }
+  
+  .selected-type button {
+    background-color: var(--yellow-strong); /* Add your preferred button background color */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .selected-type button:hover {
+    background-color: var(--yellow-strong-hover); /* Add your preferred button hover color */
+  }
+
+  .numConsumptions {
+    background-color: transparent;
+    border: 0;
+    display: flex;
+  }
+
+  .selected-type-img img {
+    height: 50px;
+  }

@@ -10,6 +10,7 @@ const PORT = 4000;
 // middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public'));
 
 // routes
 const userRoutes = require('./routes/userRoutes');
