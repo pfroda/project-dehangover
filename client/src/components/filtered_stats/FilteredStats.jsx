@@ -103,8 +103,25 @@ const filterDrinksByDate = (drinks, filter) => {
 
       {/* Render the TimeFilter component */}
       <DropdownDate onFilterChange={handleFilterChange} />
+        <div className='numeric-stats'>
+            <div className='numeric-stat-box numeric-stats-total'>
+            <p className='numeric-stats-num'>{totalDrinks}</p>
+            <p>Total Drinks</p>
+            </div>
 
-      <p>Total Drinks: {totalDrinks}</p>
+            <div className='numeric-stat-box numeric-stats-type'>
+            <p className='numeric-stats-num'>{mostConsumedType}</p>
+            <p>Most Consumed</p>
+            </div>
+
+            <div className='numeric-stat-box numeric-stats-average'>
+            <p className='numeric-stats-num'>{mostConsumedType}</p>
+            <p>Avg. Drink/Night out</p>
+            </div>
+
+
+        </div>
+      
       <p>Most consumed type: {mostConsumedType}</p>
 
       <ul>

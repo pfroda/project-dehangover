@@ -1,0 +1,18 @@
+.numeric-stats {
+    display: flex;
+    margin-bottom: 20px;
+    
+}
+
+.numeric-stat-box {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+.numeric-stats-num {
+    font-size: 35px;
+    color: var(--yellow-strong)
+}
