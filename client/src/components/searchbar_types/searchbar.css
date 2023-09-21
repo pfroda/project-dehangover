@@ -98,3 +98,12 @@
   .selected-type-img img {
     height: 50px;
   }
+
+  .dropdown-option {
+    padding: 5px;
+    margin-bottom: 1px;
+    background-color: #FFFDF5;
+    cursor: pointer
+  }
+
+  

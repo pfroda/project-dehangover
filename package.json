@@ -11,6 +11,7 @@
   "dependencies": {
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "date-fns": "^2.30.0",
     "react-svg": "^16.1.25"
   }
 }

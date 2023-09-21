@@ -87,7 +87,7 @@ function DrinkForm({ selectedType, onSubmit }) {
     selectedType && (
       <div className="selected-type">
         <div className="selected-type-img">
-        <img src={`/assets/drinks/${selectedType.imageUrl}`} alt="Beer" />
+        <img src={`/assets/drinks/${selectedType.imageUrl}`} alt="" />
         </div>
 
         <p>{selectedType.name}</p>

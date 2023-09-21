@@ -1,0 +1,24 @@
+.listed-drinks {
+    list-style-type: none;
+    background-color: #FFFDF5;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.listed-drinks-details {
+    display: flex;
+    flex-direction: column;
+} 
+.listed-drinks-date {
+    color: var(--grey);
+    font-size: 10px;
+
+}
+
+.listed-drinks-image img {
+    height: 50px;
+    padding-right: 10px;
+  }
