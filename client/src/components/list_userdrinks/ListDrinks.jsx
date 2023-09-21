@@ -7,19 +7,20 @@ function ListDrinks({ userId }) {
   const [userDrinks, setUserDrinks] = useState([]);
 
   useEffect(() => {
-    // fetch drinks - change it so it just shows on submit new drink
-
+    // Fetch drinks based on the time filter
     async function fetchUserDrinks() {
       try {
-        const drinks = await getUserDrinks(userId);
+        const timeFilter = 'all'; // Change this to the desired time filter
+        const drinks = await getUserDrinks(userId, timeFilter); // Pass the timeFilter
         setUserDrinks(drinks);
       } catch (error) {
         console.error('Error fetching user drinks:', error);
       }
     }
-
+  
     fetchUserDrinks();
   }, [userId]);
+  
 
   return (
     <div>

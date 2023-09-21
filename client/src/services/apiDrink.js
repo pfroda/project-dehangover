@@ -36,5 +36,3 @@ export async function getUserDrinks(userId) {
       throw err;
     }
   }
-
-// router.get('/drinks/:id', drinkController.getUserDrinks);
