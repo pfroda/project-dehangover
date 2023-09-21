@@ -1,4 +1,5 @@
 const Drink = require('../models/Drink');
+const Type = require('../models/Type');
 
 async function postDrink (req, res) {
   try {
@@ -42,7 +43,10 @@ async function updateDrinkNum (req, res) {
 async function getUserDrinks (req, res) {
   try {
     console.log('Getting user drinks...');
-    const userDrinks = await Drink.find({user: req.params.id});
+    const userDrinks = await Drink.find({user: req.params.id})
+    .populate('type')
+    .exec()
+    console.log(userDrinks)
     res.status(201).json(userDrinks)
 
   } catch (err) {

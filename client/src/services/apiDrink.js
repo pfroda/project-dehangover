@@ -20,3 +20,21 @@ export async function postDrink(newDrink) {
     console.log('Fetch error:', err);
   }
 }
+
+export async function getUserDrinks(userId) {
+    try {
+      const response = await fetch(`${url}/drinks/user/${userId}`, {
+        method: 'GET',
+        headers: {
+            'Content-type': 'application/json',
+          },
+      });
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      console.error('Fetch error:', err);
+      throw err;
+    }
+  }
+
+// router.get('/drinks/:id', drinkController.getUserDrinks);

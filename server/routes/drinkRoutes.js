@@ -8,6 +8,6 @@ const drinkController = require('../controllers/drinkController');
 router.post('/drinks', drinkController.postDrink);
 router.delete('/drinks/:id', drinkController.deleteDrink);
 router.put('/drinks/:id', drinkController.updateDrinkNum);
-router.get('/drinks/:id', drinkController.getUserDrinks);
+router.get('/drinks/user/:id', drinkController.getUserDrinks);
 
 module.exports = router;
