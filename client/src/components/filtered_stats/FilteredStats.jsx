@@ -5,13 +5,18 @@ import DropdownDate from '../dropdown_date/DropdownDate';
 
 function FilteredStats({ userId }) {
   const [userDrinks, setUserDrinks] = useState([]);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [selectedFilter, setSelectedFilter] = useState('week');
+  const [totalDrinks, setTotalDrinks] = useState(0);
+  const [totalHangovers, setTotalHangovers] = useState(0)
+  const [mostConsumedType, setMostConsumedType] = useState(null);
+
 
   useEffect(() => {
-    // Fetch user drinks when the component mounts
+    
     async function fetchUserDrinks() {
       try {
-        const drinks = await getUserDrinks(userId); // Fetch all user drinks
+         // Fetch all user drinks
+        const drinks = await getUserDrinks(userId);
         // Filter the drinks based on the selected filter
         const filteredDrinks = filterDrinksByDate(drinks, selectedFilter);
 
@@ -19,6 +24,36 @@ function FilteredStats({ userId }) {
             (a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed)
           );
         setUserDrinks(filteredDrinks);
+
+        // Calculate most consumed type and total drinks on selected filter
+
+        const filteredDrinksByType = {};
+        let totalDrinks = 0;
+
+        filteredDrinks.forEach((drink) => {
+            totalDrinks += drink.numConsumptions;
+
+            if(filteredDrinksByType[drink.type.name]) {
+                filteredDrinksByType[drink.type.name]++
+            } else {
+                filteredDrinksByType[drink.type.name] = 1
+            }
+        })
+
+        let MaxConsumedType = null;
+        let MaxConsumedCount = 0;
+
+        for (let type in filteredDrinksByType) {
+            if (filteredDrinksByType[type] > MaxConsumedCount) {
+                MaxConsumedCount = filteredDrinksByType[type];
+                MaxConsumedType = type;
+            }
+            setMostConsumedType(MaxConsumedType);
+            setTotalDrinks(totalDrinks);
+        }
+
+
+        
       } catch (error) {
         console.error('Error fetching user drinks:', error);
       }
@@ -31,8 +66,11 @@ function FilteredStats({ userId }) {
     setSelectedFilter(filter);
   };
 
-  // Function to filter drinks by date
+// Function calculate total drinks in time period
 
+
+
+  // Function to filter drinks by date
 const filterDrinksByDate = (drinks, filter) => {
     if (filter === 'all') {
       return drinks;
@@ -55,6 +93,8 @@ const filterDrinksByDate = (drinks, filter) => {
       }
     }
   };
+
+
   
 
   return (
@@ -64,11 +104,14 @@ const filterDrinksByDate = (drinks, filter) => {
       {/* Render the TimeFilter component */}
       <DropdownDate onFilterChange={handleFilterChange} />
 
+      <p>Total Drinks: {totalDrinks}</p>
+      <p>Most consumed type: {mostConsumedType}</p>
+
       <ul>
         {userDrinks.map((drink) => (
           <li key={drink._id}>
             {drink.type.name} - {drink.numConsumptions} consumptions -{' '}
-            {new Date(drink.dateConsumed).toLocaleString()} {/* Display the date */}
+            {/* {new Date(drink.dateConsumed).toLocaleString()} Display the date - {drink.user} */}
           </li>
         ))}
       </ul>
