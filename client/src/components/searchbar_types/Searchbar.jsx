@@ -1,61 +1,94 @@
-import React, { useState } from "react";
-import "./searchbar.css";
-import SearchIcon from "@material-ui/icons/Search";
-import CloseIcon from "@material-ui/icons/Close";
+import React, { useState } from 'react';
+import { getTypes } from '../../services/apiType';
+import { postDrink } from '../../services/apiDrink'
 
-function SearchBar({ placeholder, data }) {
-  const [filteredData, setFilteredData] = useState([]);
-  const [wordEntered, setWordEntered] = useState("");
+function TypeSearch({ onTypeSelect }) {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
-  const handleFilter = (event) => {
-    const searchWord = event.target.value;
-    setWordEntered(searchWord);
-    const newFilter = data.filter((value) => {
-      return value.title.toLowerCase().includes(searchWord.toLowerCase());
-    });
-
-    if (searchWord === "") {
-      setFilteredData([]);
-    } else {
-      setFilteredData(newFilter);
+  const handleSearch = async () => {
+    try {
+      const types = await getTypes(searchQuery);
+      setSearchResults(types);
+    } catch (error) {
+      console.error('Error fetching search results:', error);
     }
   };
 
-  const clearInput = () => {
-    setFilteredData([]);
-    setWordEntered("");
-  };
-
   return (
-    <div className="search">
-      <div className="searchInputs">
-        <input
-          type="text"
-          placeholder={placeholder}
-          value={wordEntered}
-          onChange={handleFilter}
-        />
-        <div className="searchIcon">
-          {filteredData.length === 0 ? (
-            <SearchIcon />
-          ) : (
-            <CloseIcon id="clearBtn" onClick={clearInput} />
-          )}
-        </div>
-      </div>
-      {filteredData.length != 0 && (
-        <div className="dataResult">
-          {filteredData.slice(0, 15).map((value, key) => {
-            return (
-              <a className="dataItem" href={value.link} target="_blank">
-                <p>{value.title} </p>
-              </a>
-            );
-          })}
-        </div>
-      )}
+    <div>
+      <input
+        type="text"
+        placeholder="Search for a drink"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      <button onClick={handleSearch}>Search</button>
+
+      <ul>
+        {searchResults.map((type) => (
+          <li key={type._id} onClick={() => onTypeSelect(type)}>
+            {type.name}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default SearchBar;
+function DrinkForm({ selectedType, onSubmit }) {
+  const [numConsumptions, setNumConsumptions] = useState(1);
+
+  const handleDrinkSubmission = async () => {
+    try {
+      const newDrink = {
+        user: 'user_id_here', // Replace with the user's ID
+        type: selectedType._id,
+        numConsumptions,
+      };
+
+      // Make the API call to submit the new drink
+      await postDrink(newDrink);
+    } catch (error) {
+      console.error('Error submitting new drink:', error);
+    }
+  };
+
+  return (
+    selectedType && (
+      <div>
+        <p>Selected Type: {selectedType.name}</p>
+        <input
+          type="number"
+          placeholder="Number of Consumptions"
+          value={numConsumptions}
+          onChange={(e) => setNumConsumptions(e.target.value)}
+        />
+        <button onClick={handleDrinkSubmission}>Add Drink</button>
+      </div>
+    )
+  );
+}
+
+function Searchbar() {
+  const [selectedType, setSelectedType] = useState(null);
+
+  const handleTypeSelection = (type) => {
+    setSelectedType(type);
+  };
+
+  const handleSubmit = async (newDrink) => {
+    // Handle the submission of the new drink here
+    // You can call your API to create the new drink
+    console.log('Submitting new drink:', newDrink);
+  };
+
+  return (
+    <div>
+      <TypeSearch onTypeSelect={handleTypeSelection} />
+      <DrinkForm selectedType={selectedType} onSubmit={handleSubmit} />
+    </div>
+  );
+}
+
+export default Searchbar;

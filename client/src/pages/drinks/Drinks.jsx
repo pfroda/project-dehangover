@@ -4,7 +4,7 @@ import Searchbar from '../../components/searchbar_types/Searchbar';
 function Drinks() {
   return (
     <div>Drinks
-      {/* <Searchbar></Searchbar> */}
+      <Searchbar></Searchbar>
 
     </div>
   )
