@@ -1,0 +1,8 @@
+#timeFilter {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    /* display: flex;
+    align-self: right; */
+}

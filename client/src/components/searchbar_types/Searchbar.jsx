@@ -17,7 +17,7 @@ function TypeSearch({ onTypeSelect }) {
 
     try {
       const types = await getTypes(searchQuery);
-      console.log(types);
+      // console.log(types);
 
       const filteredTypes = types.filter((type) =>
         type.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -113,7 +113,7 @@ function Searchbar() {
 
   const handleSubmit = async (newDrink) => {
     // Handle the submission of the new drink here
-    // You can call your API to create the new drink
+    // Call your API to create the new drink
     console.log('Submitting new drink:', newDrink);
   };
 

@@ -11,8 +11,31 @@
     border-radius: 5px;
     text-align: center;
   }
-  
+
 .numeric-stats-num {
     font-size: 35px;
     color: var(--yellow-strong)
 }
+
+.most-consumed-selection {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap as needed */
+  }
+  
+  .consumed-type {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .consumed-type img {
+    height: 20px;
+  }
+  
+  .consumed-type img {
+    max-width: 100px; /* Adjust the image size as needed */
+    max-height: 100px; /* Adjust the image size as needed */
+  }
+  
