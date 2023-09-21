@@ -1,8 +1,13 @@
 import React from 'react'
+import CalendarDates from '../../components/calendar/CalendarDates';
+
+
 
 function Calendar() {
   return (
-    <div>Calendar</div>
+    <div className='Calendar'>
+      <CalendarDates></CalendarDates>
+    </div>
   )
 }
 

@@ -31,7 +31,7 @@
   }
 
   .consumed-type img {
-    height: 20px;
+    height: 40px;
   }
   
   .consumed-type img {
@@ -39,3 +39,7 @@
     max-height: 100px; /* Adjust the image size as needed */
   }
   
+  .selected-type-data h5 {
+    color: var(--yellow-strong);
+    text-decoration: underline;
+  }

@@ -11,6 +11,7 @@ function FilteredStats({ userId }) {
   const [totalHangovers, setTotalHangovers] = useState(0)
   const [mostConsumedType, setMostConsumedType] = useState(null);
   const [mostConsumedTypes, setMostConsumedTypes] = useState([])
+  const [selectedType, setSelectedType] = useState(null);
 
 
   useEffect(() => {
@@ -62,13 +63,10 @@ function FilteredStats({ userId }) {
         // Sort the array in descending order based on count
         mostConsumedTypesArray.sort((a, b) => b.count - a.count);
   
-      // Get the top 5 most consumed types
+      // Set most consumed types
       setMostConsumedTypes(mostConsumedTypesArray)
-    //   const top5MostConsumedTypes = mostConsumedTypesArray.slice(0, 5);
     
-
-
-        
+        // console.log(mostConsumedTypes)
       } catch (error) {
         console.error('Error fetching user drinks:', error);
       }
@@ -106,12 +104,10 @@ const filterDrinksByDate = (drinks, filter) => {
     }
   };
 
-
-  
+console.log(selectedType)
 
   return (
     <div>
-
       <DropdownDate onFilterChange={handleFilterChange} />
         <div className='numeric-stats'>
             <div className='numeric-stat-box numeric-stats-total'>
@@ -134,14 +130,14 @@ const filterDrinksByDate = (drinks, filter) => {
 
   <h2>Most Consumed Drinks</h2>
   <div className="most-consumed-selection">
-    {mostConsumedTypes.map((consumed) => {
+    {mostConsumedTypes.slice(0,4).map((consumed) => {
       const userDrink = userDrinks.find((drink) => drink.type.name === consumed.type);
       return (
         <div key={consumed.type} className="consumed-type">
           {userDrink && (
             <>
-              <img src={`/assets/drinks/${userDrink.type.imageUrl}`} alt={consumed.type} />
-              <p>{consumed.type}</p>
+              <img src={`/assets/drinks/${userDrink.type.imageUrl}`} alt={consumed.type} onClick={()=>setSelectedType(consumed)}/>
+              {/* <p>{consumed.type}</p> */}
             </>
           )}
         </div>
@@ -150,14 +146,25 @@ const filterDrinksByDate = (drinks, filter) => {
   </div>
 </div>
 
+{selectedType && (
+    <div className="selected-type-data">
+      <h5>{selectedType.type}</h5>
+        
+      {userDrinks
+        .filter((drink) => drink.type.name === selectedType.type)
+        .map((drink) => (
+          <p key={drink._id}>Last consumed: {new Date(drink.dateConsumed).toLocaleDateString()}</p>
+        ))}
+    </div>
+  )}
       
-      <ul>
+      {/* <ul>
         {userDrinks.map((drink) => (
           <li key={drink._id}>
             {drink.type.name} - {drink.numConsumptions}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       {/* <SearchDrink onTypeSelect={handleTypeSelection}></SearchDrink> */}
     </div>
