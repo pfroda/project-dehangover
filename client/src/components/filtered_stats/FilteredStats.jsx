@@ -7,7 +7,7 @@ import './filteredstats.css';
 
 
 
-// DIRTY AF, NEED TO CLEAN -> STRUCTURE NEEDED DATA BETTER
+// DIRTY AF, SORRY NEED TO CLEAN -> STRUCTURE NEEDED DATA BETTER AND PROBABLY NOT HERE
 
 function FilteredStats() {
   const { user } = useAuth();
@@ -15,35 +15,43 @@ function FilteredStats() {
 const { userHangovers, getHangovers } = useHangover();
 
 
-  const [userFilteredDrinks, setUserFilteredDrinks] = useState([]);
+// date filter
   const [selectedFilter, setSelectedFilter] = useState('week');
+
+
+ // drinks stats
+  const [userFilteredDrinks, setUserFilteredDrinks] = useState([]);
   const [totalDrinks, setTotalDrinks] = useState(0);
-  const [totalHangovers, setTotalHangovers] = useState(0)
   const [mostConsumedType, setMostConsumedType] = useState(null);
   const [mostConsumedTypes, setMostConsumedTypes] = useState([])
   const [selectedType, setSelectedType] = useState(null);
+  const [avgScoreFilteredHangovers, setAvgScoreFilteredHangovers] = useState(0);
+
+  // hangover stats
+  const [userFilteredHangovers, setUserFilteredHangovers] = useState([]);
+  const [totalHangovers, setTotalHangovers] = useState(0)
 
 
   useEffect(() => {
 
     getDrinks(user.id);
     getHangovers(user.id);
-    // console.log(userDrinks)
-
     
-    async function fetchUserDrinks() { //filterUserDrinks
+
+    async function calculateUserStats() { //filterUserDrinks
       try {
-        
+
+        // DRINKS //
 
         // Filter the drinks based on the selected filter
         const filteredDrinks = filterDrinksByDate(userDrinks, selectedFilter);
   
-        const sortedDrinks = filteredDrinks.sort(
-            (a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed)
-          );
         setUserFilteredDrinks(filteredDrinks);
+        // const sortedDrinks = filteredDrinks.sort(
+        //     (a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed)
+        //   );
 
-        // Calculate most consumed type and total drinks on selected filter
+        // Calculate total and most consumed type on selected filter
 
         const filteredDrinksByType = {};
         let totalDrinks = 0;
@@ -75,21 +83,39 @@ const { userHangovers, getHangovers } = useHangover();
         ([type, count]) => ({ type, count })
         );
   
-        // Sort the array in descending order based on count
         mostConsumedTypesArray.sort((a, b) => b.count - a.count);
-  
-      // Set most consumed types
-      setMostConsumedTypes(mostConsumedTypesArray)
+        setMostConsumedTypes(mostConsumedTypesArray)
+
+
+        // HANGOVERS
     
-        // console.log(mostConsumedTypes)
+          // Filter hangovers based on the selected date filter
+        const filteredHangovers = filterHangoversByDate(userHangovers, selectedFilter);
+        setUserFilteredHangovers(filteredHangovers);
+
+        const totalFilteredHangovers = filteredHangovers.length;
+
+        setTotalHangovers(totalFilteredHangovers)
+        
+        console.log(totalFilteredHangovers);
+        // console.log(totalHangovers)
+
+        const avgScoreFilteredHangovers = filteredHangovers.reduce((accumulator, hangover) => {
+          return accumulator + hangover.hangoverScore}, 0) / totalFilteredHangovers;
+      
+          setAvgScoreFilteredHangovers(avgScoreFilteredHangovers)
+        console.log(avgScoreFilteredHangovers)
+
+      
       } catch (error) {
-        console.error('Error fetching user drinks:', error);
+        console.error('Error calculating user stats:', error);
       }
     }
 
-    fetchUserDrinks();
-  }, /*[user, getDrinks]*/[]);
+    calculateUserStats();
+  }, [selectedFilter, user.id]); // need this to rerender if not will stay in default (week)
 
+  // to get filter change from child - dropdown.date
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
   };
@@ -120,10 +146,40 @@ const filterDrinksByDate = (drinks, filter) => {
   };
 
 
+  const filterHangoversByDate = (userHangovers, filter) => {
+    if (filter === 'all') {
+      return userHangovers;
+    } else {
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+  
+      if (filter === 'week') {
+        const oneWeekAgo = new Date(currentDate);
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneWeekAgo);
+      } else if (filter === 'month') {
+        const oneMonthAgo = new Date(currentDate);
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneMonthAgo);
+      } else if (filter === 'year') {
+        const oneYearAgo = new Date(currentDate);
+        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneYearAgo);
+      }
+    }
+  };
+
+
 
   return (
     <div>
       <DropdownDate onFilterChange={handleFilterChange} />
+
+        <h4>Hey {user.firstname}, you've had {totalHangovers} hangovers</h4>
+
+      <div className="hangover-stats">
+        {avgScoreFilteredHangovers}
+      </div>
         <div className='numeric-stats'>
             <div className='numeric-stat-box numeric-stats-total'>
             <p className='numeric-stats-num'>{totalDrinks}</p>
@@ -136,8 +192,8 @@ const filterDrinksByDate = (drinks, filter) => {
             </div>
 
             <div className='numeric-stat-box numeric-stats-average'>
-            <p className='numeric-stats-num'>{mostConsumedType}</p>
-            <p>Avg. Drink/Night out</p>
+            <p className='numeric-stats-num'>{(totalDrinks/totalHangovers).toFixed(0)}</p>
+            <p>Avg. Drinks/Nights out</p>
             </div>
         </div>
 
@@ -145,7 +201,7 @@ const filterDrinksByDate = (drinks, filter) => {
 
   <h2>Most Consumed Drinks</h2>
   <div className="most-consumed-selection">
-    {mostConsumedTypes.slice(0,4).map((consumed) => {
+    {mostConsumedTypes.slice(0,3).map((consumed) => {
       const userDrink = userDrinks.find((drink) => drink.type.name === consumed.type);
       return (
         <div key={consumed.type} className="consumed-type">
@@ -178,180 +234,3 @@ const filterDrinksByDate = (drinks, filter) => {
 }
 
 export default FilteredStats;
-
-
-
-
-
-
-
-
-
-// function FilteredStats({ userId }) {
-//   const [userDrinks, setUserDrinks] = useState([]);
-//   const [selectedFilter, setSelectedFilter] = useState('week');
-//   const [totalDrinks, setTotalDrinks] = useState(0);
-//   const [totalHangovers, setTotalHangovers] = useState(0)
-//   const [mostConsumedType, setMostConsumedType] = useState(null);
-//   const [mostConsumedTypes, setMostConsumedTypes] = useState([])
-//   const [selectedType, setSelectedType] = useState(null);
-
-
-//   useEffect(() => {
-    
-//     async function fetchUserDrinks() {
-//       try {
-//          // Fetch all user drinks
-//         const drinks = await getUserDrinks(userId);
-//         // Filter the drinks based on the selected filter
-//         const filteredDrinks = filterDrinksByDate(drinks, selectedFilter);
-
-//         const sortedDrinks = filteredDrinks.sort(
-//             (a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed)
-//           );
-//         setUserDrinks(filteredDrinks);
-
-//         // Calculate most consumed type and total drinks on selected filter
-
-//         const filteredDrinksByType = {};
-//         let totalDrinks = 0;
-
-//         filteredDrinks.forEach((drink) => {
-//             totalDrinks += drink.numConsumptions;
-
-//             if(filteredDrinksByType[drink.type.name]) {
-//                 filteredDrinksByType[drink.type.name]++
-//             } else {
-//                 filteredDrinksByType[drink.type.name] = 1
-//             }
-//         })
-
-//         let MaxConsumedType = null;
-//         let MaxConsumedCount = 0;
-
-//         for (let type in filteredDrinksByType) {
-//             if (filteredDrinksByType[type] > MaxConsumedCount) {
-//                 MaxConsumedCount = filteredDrinksByType[type];
-//                 MaxConsumedType = type;
-//             }
-//             setMostConsumedType(MaxConsumedType);
-//             setTotalDrinks(totalDrinks);
-//         }
-
-//          // Convert the object into an array of objects
-//         const mostConsumedTypesArray = Object.entries(filteredDrinksByType).map(
-//         ([type, count]) => ({ type, count })
-//         );
-  
-//         // Sort the array in descending order based on count
-//         mostConsumedTypesArray.sort((a, b) => b.count - a.count);
-  
-//       // Set most consumed types
-//       setMostConsumedTypes(mostConsumedTypesArray)
-    
-//         // console.log(mostConsumedTypes)
-//       } catch (error) {
-//         console.error('Error fetching user drinks:', error);
-//       }
-//     }
-
-//     fetchUserDrinks();
-//   }, [userId, selectedFilter]);
-
-//   const handleFilterChange = (filter) => {
-//     setSelectedFilter(filter);
-//   };
-
-
-//   // Function to filter drinks by date
-// const filterDrinksByDate = (drinks, filter) => {
-//     if (filter === 'all') {
-//       return drinks;
-//     } else {
-//       const currentDate = new Date();
-//       currentDate.setHours(0, 0, 0, 0);
-  
-//       if (filter === 'week') {
-//         const oneWeekAgo = new Date(currentDate);
-//         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-//         return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneWeekAgo);
-//       } else if (filter === 'month') {
-//         const oneMonthAgo = new Date(currentDate);
-//         oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-//         return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneMonthAgo);
-//       } else if (filter === 'year') {
-//         const oneYearAgo = new Date(currentDate);
-//         oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-//         return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneYearAgo);
-//       }
-//     }
-//   };
-
-// // console.log(selectedType)
-
-//   return (
-//     <div>
-//       <DropdownDate onFilterChange={handleFilterChange} />
-//         <div className='numeric-stats'>
-//             <div className='numeric-stat-box numeric-stats-total'>
-//             <p className='numeric-stats-num'>{totalDrinks}</p>
-//             <p>Total Drinks</p>
-//             </div>
-
-//             <div className='numeric-stat-box numeric-stats-type'>
-//             <p className='numeric-stats-num'>{mostConsumedType}</p>
-//             <p>Most Consumed</p>
-//             </div>
-
-//             <div className='numeric-stat-box numeric-stats-average'>
-//             <p className='numeric-stats-num'>{mostConsumedType}</p>
-//             <p>Avg. Drink/Night out</p>
-//             </div>
-//         </div>
-
-//         <div>
-
-//   <h2>Most Consumed Drinks</h2>
-//   <div className="most-consumed-selection">
-//     {mostConsumedTypes.slice(0,4).map((consumed) => {
-//       const userDrink = userDrinks.find((drink) => drink.type.name === consumed.type);
-//       return (
-//         <div key={consumed.type} className="consumed-type">
-//           {userDrink && (
-//             <>
-//               <img src={`/assets/drinks/${userDrink.type.imageUrl}`} alt={consumed.type} onClick={()=>setSelectedType(consumed)}/>
-//               {/* <p>{consumed.type}</p> */}
-//             </>
-//           )}
-//         </div>
-//       );
-//     })}
-//   </div>
-// </div>
-
-// {selectedType && (
-//     <div className="selected-type-data">
-//       <h5>{selectedType.type}</h5>
-        
-//       {userDrinks
-//         .filter((drink) => drink.type.name === selectedType.type)
-//         .map((drink) => (
-//           <p key={drink._id}>Last consumed: {new Date(drink.dateConsumed).toLocaleDateString()}</p>
-//         ))}
-//     </div>
-//   )}
-      
-//       {/* <ul>
-//         {userDrinks.map((drink) => (
-//           <li key={drink._id}>
-//             {drink.type.name} - {drink.numConsumptions}
-//           </li>
-//         ))}
-//       </ul> */}
-
-//       {/* <SearchDrink onTypeSelect={handleTypeSelection}></SearchDrink> */}
-//     </div>
-//   );
-// }
-
-// export default FilteredStats;

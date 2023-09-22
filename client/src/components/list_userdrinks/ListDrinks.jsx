@@ -12,7 +12,7 @@ function ListDrinks() {
     
     getDrinks(user.id);
   
-  }, []);
+  }, [userDrinks, user.id]);
   
 
   // }

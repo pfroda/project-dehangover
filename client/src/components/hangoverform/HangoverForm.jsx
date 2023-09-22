@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useHangover } from '../../context/HangoversContext';
+import { useAuth } from '../../context/AuthContext';
 import HangoverRating from '../hangoverrating/HangoverRating';
 
 import './hangoverform.css';
 
 function HangoverForm() {
     const { postHangovers } = useHangover();
-
-    // const [comment, setComment] = useState("");
+    const { user } = useAuth();
     const [rating, setRating] = useState(0);
 
     const handleRatingChange = (newRating) => {
@@ -19,11 +19,13 @@ function HangoverForm() {
 
 
         const hangoverData = {
+            user: user.id,
+            hangoverScore: rating,
             hangoverComments: event.target.comments.value,
-            hangoverScore: rating
+            hangoverDate: new Date()
         }
         console.log(hangoverData)
-        await(postHangovers(hangoverData))
+        await postHangovers(hangoverData)
     }
 
   return (
@@ -44,4 +46,4 @@ function HangoverForm() {
   )
 }
 
-export default HangoverForm
+export default HangoverForm;

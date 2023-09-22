@@ -7,7 +7,7 @@ function Stats() {
   return (
     <div className='Stats'>Stats
     <FilteredStats></FilteredStats>
-    <HangoverForm></HangoverForm>
+    
     </div>
   )
 }
