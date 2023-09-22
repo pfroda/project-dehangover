@@ -42,7 +42,7 @@ async function updateDrinkNum (req, res) {
 
 async function getUserDrinks (req, res) {
   try {
-    console.log('Getting user drinks...');
+    // console.log('Getting user drinks...');
     const userDrinks = await Drink.find({user: req.params.id})
     .populate('type')
     .exec()

@@ -10,15 +10,12 @@ function ListDrinks() {
 
   useEffect(() => {
     
-    // console.log('User ID:', user.id);
     getDrinks(user.id);
-    // console.log('userDrinks:', userDrinks);
-  }, [user, getDrinks]);
   
-  function handleClick() {
-    getDrinks(user.id);
-    
-  }
+  }, []);
+  
+
+  // }
 
   return (
     <div>

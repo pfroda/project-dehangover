@@ -17,7 +17,7 @@ export async function postDrink(newDrink) {
     const data = await response.json();
     return data;
   } catch (err) {
-    console.log('Fetch error:', err);
+    console.log('Post error:', err);
   }
 }
 

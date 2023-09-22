@@ -38,7 +38,6 @@ function DrinkProvider({children}) {
             {children}
         </DrinkContext.Provider>
     )
-
 }
 
 export default DrinkProvider;

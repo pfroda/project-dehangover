@@ -27,7 +27,7 @@ export default function CalendarDates() {
   };
 
   const getDrinksForSelectedDate = () => {
-    console.log(allDrinksData);
+    // console.log(allDrinksData);
     console.log(format(date, 'yyyy-MM-dd'));
     
     // Filter drinks for the selected date

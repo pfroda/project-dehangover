@@ -5,7 +5,6 @@ function Signup() {
   return (
     <div>
       <SignupForm></SignupForm>
-
     </div>
   )
 }

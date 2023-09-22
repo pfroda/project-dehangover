@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthProvider from './context/AuthContext';
 import DrinkProvider from './context/DrinksContext';
+import HangoverProvider from './context/HangoversContext';
 import Signup from './pages/signup/Signup';
 import Signin from './pages/signin/Signin';
 import Welcome from './pages/welcome/Welcome';
@@ -18,11 +19,13 @@ function App() {
       
     <AuthProvider>
     <DrinkProvider>
+    <HangoverProvider>
 
    
       <Router>
         <Routes>
           <Route path="/" element={<Signin />} />
+          <Route path="/login" element={<Signin />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/welcome" element={<Welcome />} />
@@ -30,9 +33,10 @@ function App() {
           <Route path="/drinks" element={<Drinks />} />
           <Route path="/stats" element={<Stats />} />
         </Routes>
-      {/* <Navbar/>  */}
+      <Navbar/> 
       </Router>
 
+      </HangoverProvider>
       </DrinkProvider>
       </AuthProvider>
     </div>

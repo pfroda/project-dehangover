@@ -6,6 +6,6 @@ const hangoverController = require('../controllers/hangoverController');
 
 // Add and get hangovers
 router.post('/hangover', hangoverController.postHangover);
-router.get('/hangover/:id', hangoverController.getUserHangovers)
+router.get('/hangover/user/:id', hangoverController.getUserHangovers)
 
 module.exports = router;

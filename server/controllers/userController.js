@@ -35,8 +35,8 @@ async function loginUser (req, res) {
 
     const correctPassword = await bcrypt.compare(password, user.password)
     if (!correctPassword) throw new Error();
-    res.status(200).json({
-      _id: user._id,
+    res.status(201).json({
+      id: user.id,
       firstname: user.firstName,
       email: user.email,
       createdAt: user.createdAt
