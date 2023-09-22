@@ -29,6 +29,14 @@ body {
     align-items: left;
 }
 
+p {
+    font-size: 12px;
+}
+
+a {
+    color: var(--yellow-strong);
+    text-decoration: underline var(--yellow-strong);
+}
 h1 {
     font-size: 30px;
     font-weight: 600;
@@ -47,7 +55,7 @@ h2 {
     color: var(--red);
 }
 input {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     /* width: 100%; */
     height: 25px;
     border: 1px solid var(--grey);
@@ -70,7 +78,7 @@ button {
     border-color: var(--grey);
     border-radius: 5px;
     height: 30px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 button:hover {

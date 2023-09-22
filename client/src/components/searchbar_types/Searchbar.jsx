@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 import { getTypes } from '../../services/apiType';
 import { postDrink } from '../../services/apiDrink';
 import './searchbar.css'
@@ -7,6 +8,7 @@ import './searchbar.css'
 // DIRTY AF
 
 function TypeSearch({ onTypeSelect }) {
+
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -68,19 +70,25 @@ function TypeSearch({ onTypeSelect }) {
 
 
 function DrinkForm({ selectedType, onSubmit }) {
+  const { user } = useAuth();
   const [numConsumptions, setNumConsumptions] = useState(1);
 
   const handleDrinkSubmission = async () => {
     try {
+      if (!user || !selectedType) {
+        console.error('User or selectedType is not available.');
+        return;
+      }
+      console.log(user)
       const newDrink = {
-        user: 'user_id_here', // Replace with the user's ID
+        user: user.id,
         type: selectedType._id,
         numConsumptions,
       };
 
       // Make the API call to submit the new drink
       await postDrink(newDrink);
-      console.log(newDrink);
+      // console.log(newDrink);
     } catch (error) {
       console.error('Error submitting new drink:', error);
     }

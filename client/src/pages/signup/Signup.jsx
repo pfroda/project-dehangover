@@ -1,10 +1,10 @@
 import React from 'react'
-import Signup_form from '../../components/signup_form/Signup_form'
+import SignupForm from '../../components/signup_form/SignupForm'
 
 function Signup() {
   return (
     <div>
-      <Signup_form></Signup_form>
+      <SignupForm></SignupForm>
 
     </div>
   )

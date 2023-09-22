@@ -106,7 +106,7 @@ const filterDrinksByDate = (drinks, filter) => {
     }
   };
 
-console.log(selectedType)
+// console.log(selectedType)
 
   return (
     <div>

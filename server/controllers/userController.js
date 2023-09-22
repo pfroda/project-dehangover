@@ -12,7 +12,12 @@ async function createUser (req, res) {
         email,
         password: passwordHash
     });
-    res.status(201).json(newUser)
+    res.status(201).json({
+      id: newUser.id,
+      firstname: newUser.firstName,
+      email: newUser.email,
+      createdAt: newUser.createdAt
+    })
   } catch (error) {
     console.log(error);
     res.status(500).json({error: 'Internal server error'})
@@ -30,7 +35,12 @@ async function loginUser (req, res) {
 
     const correctPassword = await bcrypt.compare(password, user.password)
     if (!correctPassword) throw new Error();
-    res.status(200).json(user._id)
+    res.status(200).json({
+      _id: user._id,
+      firstname: user.firstName,
+      email: user.email,
+      createdAt: user.createdAt
+    })
     
   } catch (error) {
     console.log(error);
@@ -38,16 +48,5 @@ async function loginUser (req, res) {
   }
 };
 
-async function findUser (req, res) {
-  try {
-    const user = await User.findById(req.user.id);
-    if (!user) res.status(400).json({message: 'User not found'});
-    res.status(200).json(user._id)
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({error: 'Internal server error'})
-  }
-}
 
-
-module.exports = {createUser, loginUser, findUser}
+module.exports = {createUser, loginUser}

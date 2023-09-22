@@ -6,7 +6,7 @@ function Drinks() {
   return (
     <div>Drinks
       <Searchbar ></Searchbar>
-      <ListDrinks userId={'757365725f69645f68657265'} ></ListDrinks>
+      <ListDrinks /*userId={'757365725f69645f68657265'}*/ ></ListDrinks>
     </div>
   )
 }
