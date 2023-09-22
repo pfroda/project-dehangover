@@ -1,0 +1,21 @@
+.rating-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .rating-bar {
+    cursor: pointer;
+    width: 100%;
+    height: 10px;
+    /* border-radius: 10px; */
+    background-color: #ccc;
+    overflow: hidden;
+  }
+  
+  .filler-bar {
+    height: 100%;
+    transition: width 0.2s, background-color 0.2s;
+  }
+  
+  
