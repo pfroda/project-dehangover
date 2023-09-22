@@ -6,7 +6,7 @@ import CalendarDates from '../../components/calendar/CalendarDates';
 function Calendar() {
   return (
     <div className='Calendar'>
-      <CalendarDates></CalendarDates>
+      <CalendarDates ></CalendarDates>
     </div>
   )
 }

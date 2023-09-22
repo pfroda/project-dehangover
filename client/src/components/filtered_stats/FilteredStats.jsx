@@ -4,6 +4,8 @@ import './filteredstats.css';
 import DropdownDate from '../dropdown_date/DropdownDate';
 // import SearchDrink from '../search_drink/SearchDrink';
 
+// DIRTY AF, NEED TO CLEAN -> GET DRINKS DATA IN USE CONTEXT AND STRUCTURE NEEDED DATA BETTER
+
 function FilteredStats({ userId }) {
   const [userDrinks, setUserDrinks] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState('week');

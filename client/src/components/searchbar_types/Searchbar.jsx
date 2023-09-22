@@ -3,6 +3,9 @@ import { getTypes } from '../../services/apiType';
 import { postDrink } from '../../services/apiDrink';
 import './searchbar.css'
 
+
+// DIRTY AF
+
 function TypeSearch({ onTypeSelect }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
