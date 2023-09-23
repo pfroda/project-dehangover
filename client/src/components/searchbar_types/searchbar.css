@@ -22,6 +22,7 @@ input:focus {
     justify-content: space-between;
     align-items: center;
     background-color: #f0f0f0;
+    border-radius: 10px;
 }
   
 .selected-type button {
@@ -49,8 +50,14 @@ input:focus {
 .dropdown-option {
     padding: 5px;
     margin-bottom: 1px;
-    background-color: #FFFDF5;
-    cursor: pointer
+    background-color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+
+.dropdown-option:hover {
+    background-color: #F3F2EA;
 }
 
   

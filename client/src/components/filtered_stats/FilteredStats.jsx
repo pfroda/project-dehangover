@@ -3,6 +3,12 @@ import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext';
 import { useHangover } from '../../context/HangoversContext';
 import DropdownDate from '../dropdown_date/DropdownDate';
+import 'react-circular-progressbar/dist/styles.css';
+
+import { Line, Circle } from 'rc-progress';
+import { setHangoverColor } from '../../utils/utils';
+// import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+
 import './filteredstats.css';
 
 
@@ -14,7 +20,7 @@ function FilteredStats() {
   const { userDrinks, getDrinks } = useDrink();
 const { userHangovers, getHangovers } = useHangover();
 
-
+const [displayColor, setDisplaycolor] = useState()
 // date filter
   const [selectedFilter, setSelectedFilter] = useState('week');
 
@@ -120,6 +126,7 @@ const { userHangovers, getHangovers } = useHangover();
     }
 
     calculateUserStats();
+   
   }, [selectedFilter, user.id]); // need this to rerender if not will stay in default (week)
 
   // , userDrinks, userHangovers, getDrinks, getHangovers
@@ -185,7 +192,7 @@ const filterDrinksByDate = (drinks, filter) => {
   return (
     <div className='filtered-stats'>
 
-        <h2>hey {user.firstname}, {selectedFilter !== 'all' ? (
+        <h2>Hey {user.firstname}, {selectedFilter !== 'all' ? (
 <span>this {selectedFilter}</span>
 ) : (
 <span>in total</span>
@@ -194,7 +201,28 @@ const filterDrinksByDate = (drinks, filter) => {
       <DropdownDate onFilterChange={handleFilterChange} />
       
       <div className="hangover-stats">
-        {avgScoreFilteredHangovers}
+
+      <div className="hangover-circle">
+        {/* <CircularProgressbar
+        value={avgScoreFilteredHangovers* 10}
+        text={`${avgScoreFilteredHangovers.toFixed(2)}/10`}
+        styles={buildStyles({
+          pathColor: setCircleColor(),
+          textColor: '#000000',
+          textSize: '14px'
+        })}
+        ></CircularProgressbar> */}
+
+      <Circle
+      percent={avgScoreFilteredHangovers* 10}
+      strokeWidth={5.5}
+      trailWidth={5.5}
+      strokeColor={setHangoverColor(avgScoreFilteredHangovers)} /> 
+
+
+
+      </div>
+      <p>{avgScoreFilteredHangovers.toFixed(2)}/10</p>
       </div>
         <div className='numeric-stats'>
             <div className='numeric-stat-box numeric-stats-total'>

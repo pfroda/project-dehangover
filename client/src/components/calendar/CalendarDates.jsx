@@ -5,6 +5,9 @@ import { useDrink } from '../../context/DrinksContext';
 import { useHangover } from '../../context/HangoversContext';
 
 import { format, isSameDay } from 'date-fns';
+import { Line } from 'rc-progress';
+import { setHangoverColor } from '../../utils/utils';
+
 import './calendardates.css';
 
 export default function CalendarDates() {
@@ -62,6 +65,7 @@ export default function CalendarDates() {
 
   return (
     <div className="CalendarDates">
+      <h2>Check out all your previous hangovers</h2>
       {/* <h1 className="header">React Calendar</h1> */}
       <div className="calendar-container">
         <Calendar onChange={handleDateChange}
@@ -84,6 +88,13 @@ export default function CalendarDates() {
           
           <>
           <h4>Your hangover score:</h4>
+          {/* <ProgressBar completed={hangover.hangoverScore*10}></ProgressBar> */}
+
+          <Line
+          percent={hangover.hangoverScore*10} strokeWidth={2.5}
+          trailWidth={2.5}
+          strokeColor={setHangoverColor(hangover.hangoverScore)} />
+
           <h4 key={index}>{hangover.hangoverScore}</h4>
           <h4>Your wrote:</h4>
           <div className="hangover-comments">
@@ -122,7 +133,7 @@ export default function CalendarDates() {
                     <img src={`/assets/drinks/${drink.type.imageUrl}`} alt="" />
                   </div>
                   <div className='listed-drinks-details'>
-                    {drink.numConsumptions} {drink.type.name} -
+                    {drink.numConsumptions} {drink.type.name} 
                     <div className='listed-drinks-date'>
                       {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
                     </div></div>

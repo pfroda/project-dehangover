@@ -12,12 +12,12 @@ function ListDrinks() {
     
     getDrinks(user.id);
   
-  }, [userDrinks, user.id]);
-  
+  }, []);
+  // userDrinks, user.id
 
   return (
     <div>
-      <h2>Your Drinks</h2>
+      {/* <h2>Your Drinks</h2> */}
       {userDrinks ? (
         <ul>
           {userDrinks.map((drink) => (
@@ -26,7 +26,7 @@ function ListDrinks() {
                 <img src={`/assets/drinks/${drink.type.imageUrl}`} alt="" />
               </div>
               <div className='listed-drinks-details'>
-                {drink.numConsumptions} {drink.type.name} -
+                {drink.numConsumptions} {drink.type.name}
                 <div className='listed-drinks-date'>
                   {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
                 </div>
