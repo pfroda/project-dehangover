@@ -1,0 +1,15 @@
+.Header {
+    display: flex;
+    align-content: space-between;
+    align-items: center;
+    padding: 10px
+}
+
+.header-general, .header {
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    margin-left: 10px;
+}

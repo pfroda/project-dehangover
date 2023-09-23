@@ -1,0 +1,16 @@
+.Signin_form {
+    background-color: var(--yellow-pale);
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.signin-form button {
+    width: 100%;
+}

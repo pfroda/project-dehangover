@@ -8,7 +8,7 @@ import statsIcon from '../../assets/icons/icon_stats.svg';
 
 function Navbar() {
     return (
-        <div className='Navbar'>
+        <div className='Navbar sticky'>
             <div className="navbar-icons">
                 <NavLink to='/calendar' activeclassname='active'>
                     <ReactSVG src={calendarIcon} alt="calendar" />

@@ -22,7 +22,7 @@ function SigninForm() {
 
   return (
     <div className='SigninForm'>
-      <h2>Sign In</h2>
+      {/* <h2>Sign In</h2> */}
       <form className="signup-form" onSubmit={handleSignin}>
         <input type="text" name='email' required={true} placeholder='Email'/>
         <input type="password" name='password' required={true} placeholder='Password'/>

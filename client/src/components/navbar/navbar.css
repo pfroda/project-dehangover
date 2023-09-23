@@ -2,9 +2,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* width: 100%; */
     height: 90px;
 }
+
+.sticky {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 0 20px 0;
+    overflow: hidden;
+    background-color: white;
+  }
 
 .navbar-icons {
     display: flex;
@@ -19,7 +27,7 @@
 }
 .navbar-icons svg {
     height: 50px;
-    max-width: 200px;
+    max-width: 110px;
 }
 
 .navbar-icons svg path {

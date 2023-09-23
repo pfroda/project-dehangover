@@ -1,11 +1,14 @@
 import React from 'react';
-// import { useEffect } from 'react';
 import SigninForm from '../../components/signin_form/SigninForm';
+import Header from '../../components/header/Header';
 import './signin.css'
 
 function Signin() {
   return (
+    <>
+      <Header></Header>
       <SigninForm></SigninForm>
+    </>
   )
 }
 

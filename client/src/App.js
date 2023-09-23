@@ -33,7 +33,7 @@ function App() {
           <Route path="/drinks" element={<Drinks />} />
           <Route path="/stats" element={<Stats />} />
         </Routes>
-      <Navbar/> 
+      
       </Router>
 
       </HangoverProvider>

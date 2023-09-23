@@ -2,34 +2,32 @@ import React, { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
+import { useHangover } from '../../context/HangoversContext';
+
 import { format, isSameDay } from 'date-fns';
 import './calendardates.css';
 
 export default function CalendarDates() {
-  const [date, setDate] = useState(new Date());
-
   const { user } = useAuth();
   const { userDrinks, getDrinks } = useDrink();
+  const { userHangovers, getHangovers } = useHangover();
+  const [date, setDate] = useState(new Date());
+
+  const [hangoverScore, setHangoverScore] = useState(0)
+// const [hangoverDates, setHangoverDates] = useState([])
 
   useEffect(() => {
     getDrinks(user.id);
+    getHangovers(user.id);
+ 
+    // console.log(hangoverDates)
+    
   }, []);
 
-  // const fetchUserDrinks = async (userId) => {
-  //   try {
-  //     const drinks = await getUserDrinks(userId);
-  //     setAllDrinksData(drinks);
-  //   } catch (err) {
-  //     console.error('Fetch error:', err);
-  //     throw err;
-  //   }
-  // };
+  // setHangoverDates(userHangovers.map(hangover => new Date(hangover.hangoverDate)));
 
+  // Filter drinks & hangovers for the selected date
   const getDrinksForSelectedDate = () => {
-
-    console.log(format(date, 'yyyy-MM-dd'));
-    
-    // Filter drinks for the selected date
     const dateDrinks = userDrinks.filter((drink) =>
       isSameDay(new Date(drink.dateConsumed), date)
     );
@@ -37,19 +35,75 @@ export default function CalendarDates() {
     return dateDrinks;
   };
 
+  const getHangoversForSelectedDate = () => {
+    const dateHangovers = userHangovers.filter((hangover) => 
+      isSameDay(new Date(hangover.hangoverDate), date)
+    );
+    return dateHangovers
+ 
+  }
+
   const handleDateChange = (newDate) => {
     setDate(newDate);
   };
+
+
+
+
+  // const getColor = () => {
+  //   // Calculate color based on rating click
+  //   if (barWidth >= 75) return "#c0564a";
+  //   if (barWidth >= 50) return "#fdc52b";
+  //   if (barWidth >= 25) return "#ffe9ad";
+  //   return "#81b44c";
+  // };
+
+
 
   return (
     <div className="CalendarDates">
       <h1 className="header">React Calendar</h1>
       <div className="calendar-container">
-        <Calendar onChange={handleDateChange} value={date} />
+        <Calendar onChange={handleDateChange}
+        value={date}
+        locale="en-GB"
+        // tileClassName={({date, view}) => {
+        //   if(hangoverDates.some(hangoverDate => isSameDay(hangoverDate, date))) {
+        //     console.log('Date matched:', date);
+        //     return 'highlight-red'
+        //   }
+        // }}
+        />
+      </div>
+
+      <div className="hangover-details">
+
+
+        {getHangoversForSelectedDate().map((hangover, index) => (
+          
+          <>
+          <p key={index}>{hangover.hangoverScore}</p>
+          <p>{hangover.hangoverComments}</p>
+          
+
+{/* 
+        <div key={index} className="hangover-date-score">
+
+        <div className="filler-bar" style={{
+              width: `${hangover.hangoverScore}%`,
+              backgroundColor: "black",
+            }}>
+       </div>
+
+        </div> */}
+          </>
+
+        ))}
+
       </div>
 
       <div className="drink-list">
-        <h2>Drinks for {date.toDateString()}</h2>
+        <h4>Drinks for {date.toDateString()}</h4>
         <ul>
           {getDrinksForSelectedDate().map((drink, index) => (
             <li key={index}>{drink.type.name}</li>
