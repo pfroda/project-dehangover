@@ -1,5 +1,5 @@
 .Signup_form {
-    background-color: var(--yellow-pale);
+    /* background-color: var(--yellow-pale); */
     display: flex;
     flex-direction: column;
 }
@@ -7,10 +7,19 @@
 .signup-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 
 .signup-form button {
     width: 100%;
 }
+
+
+.Signup_form img {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

@@ -10,6 +10,7 @@
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     vertical-align: baseline;
+    
     /* font-family: 'Roboto'; */
   }
   
@@ -57,9 +58,6 @@
 
 /* ROOT COLORS AND GENERAL STYLES */
 
-
-
-
 :root {
     --yellow-strong: #ffd35a;
     --yellow-strong-hover: #fdc52b;
@@ -83,9 +81,9 @@
 
 }
 body {
-    background-color: white;
+  background-color: var(--yellow-pale);
     /* max-width: 450px; */
-    padding: 20px;
+    padding: 25px;
     align-items: left;
 }
 
@@ -117,7 +115,7 @@ h2 {
 input {
     /* margin-top: 20px; */
     /* width: 100%; */
-    height: 25px;
+    height: 30px;
     border: 1px solid var(--grey);
     border-radius: 5px;
     text-indent: 10px;
@@ -137,7 +135,7 @@ button {
     border: 0;
     border-color: var(--grey);
     border-radius: 5px;
-    height: 30px;
+    height: 35px;
     /* margin-top: 20px; */
 }
 

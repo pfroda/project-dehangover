@@ -3,7 +3,8 @@ import { useAuth } from '../../context/AuthContext';
 // import { useEffect } from 'react';
 // import { createUser } from '../../services/apiUser';
 import { Link, useNavigate } from 'react-router-dom';
-import './signup_form.css'
+import './signup_form.css';
+import cover from '../../assets/images/dehangover_signup.png';
 
 // 
 
@@ -28,7 +29,8 @@ function SignupForm() {
 
   return (
     <div className='Signup_form'>
-      {/* <h2>Sign up</h2> */}
+      <h2>Create your account</h2>
+      <img src={cover} alt="" />
       <form className='signup-form' onSubmit={handleSignup}>
 
         <input type="text" name='firstName' required={true} placeholder="Name"/>
