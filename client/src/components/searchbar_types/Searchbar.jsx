@@ -5,7 +5,7 @@ import { postDrink } from '../../services/apiDrink';
 import './searchbar.css'
 
 
-// DIRTY AF
+// DIRTY AF and still using api services and not UseContext...
 
 function TypeSearch({ onTypeSelect }) {
 
@@ -41,7 +41,7 @@ function TypeSearch({ onTypeSelect }) {
   };
 
   return (
-    <div>
+    <div className='search'>
       <input
         type="text"
         placeholder="Search for a drink"

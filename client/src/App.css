@@ -82,9 +82,13 @@
 }
 body {
   background-color: var(--yellow-pale);
-    /* max-width: 450px; */
+    margin: 0;
     padding: 25px;
     align-items: left;
+    display: flex; /* Add this to center the content vertically */
+    flex-direction: column; /* Add this to center the content vertically */
+    justify-content: center; /* Add this to center the content vertically */
+    align-items: center; /* Add this to center the content horizontally */
 }
 
 p {
@@ -105,6 +109,9 @@ h2 {
     font-weight: 600;
 }
 
+h4 {
+  font-weight: 600;
+}
 
 /* forms */
 .error {

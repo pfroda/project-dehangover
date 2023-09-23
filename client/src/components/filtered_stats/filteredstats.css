@@ -43,3 +43,7 @@
     color: var(--yellow-strong);
     text-decoration: underline;
   }
+
+  #totalHangovers {
+    text-decoration: underline;
+  }

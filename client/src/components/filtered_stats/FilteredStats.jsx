@@ -173,10 +173,11 @@ const filterDrinksByDate = (drinks, filter) => {
 
   return (
     <div>
+
+        <h1>Hey {user.firstname}, you've had <span id="totalHangovers">{totalHangovers}</span> hangovers</h1>
+
       <DropdownDate onFilterChange={handleFilterChange} />
-
-        <h4>Hey {user.firstname}, you've had {totalHangovers} hangovers</h4>
-
+      
       <div className="hangover-stats">
         {avgScoreFilteredHangovers}
       </div>
@@ -199,7 +200,7 @@ const filterDrinksByDate = (drinks, filter) => {
 
         <div>
 
-  <h2>Most Consumed Drinks</h2>
+  <h4>Most Consumed Drinks</h4>
   <div className="most-consumed-selection">
     {mostConsumedTypes.slice(0,3).map((consumed) => {
       const userDrink = userDrinks.find((drink) => drink.type.name === consumed.type);

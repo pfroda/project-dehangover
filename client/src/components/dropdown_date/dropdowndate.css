@@ -1,8 +1,35 @@
+.filter-menu {
+    /* display: flex; */
+    align-items: center;
+    justify-content: flex-end;
+    /* margin-right: 20px; */
+    position: relative;
+}
+
+
 #timeFilter {
     padding: 5px;
-    border: 1px solid black;
+    border: 1px solid var(--grey);
     border-radius: 10px;
-    margin-bottom: 10px;
-    /* display: flex;
-    align-self: right; */
+    margin-bottom: 5px;
+    width: 150px; 
+    justify-content: flex-end;
 }
+
+.menu-options {
+    padding-top: 20px;
+}
+
+#filter-info {
+    /* padding-top: 10px; */
+    padding-bottom: 10px;
+}
+
+/* .filter-menu-options {
+    margin: 0
+} */
+
+/* .menu-options {
+    position: absolute;
+    margin: 0;
+} */

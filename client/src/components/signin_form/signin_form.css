@@ -14,3 +14,11 @@
 .signin-form button {
     width: 100%;
 }
+
+
+.Signin_form img {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

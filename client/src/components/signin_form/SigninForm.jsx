@@ -1,7 +1,8 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
-import './signin_form.css'
+import './signin_form.css';
+import cover from '../../assets/images/dehangover_signup.png';
 
 function SigninForm() {
   const { signin } = useAuth();
@@ -21,8 +22,9 @@ function SigninForm() {
   }
 
   return (
-    <div className='SigninForm'>
-      {/* <h2>Sign In</h2> */}
+    <div className='Signin_form'>
+      <h2>Sign In</h2>
+      <img src={cover} alt="" />
       <form className="signup-form" onSubmit={handleSignin}>
         <input type="text" name='email' required={true} placeholder='Email'/>
         <input type="password" name='password' required={true} placeholder='Password'/>

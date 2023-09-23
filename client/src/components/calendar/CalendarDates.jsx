@@ -62,7 +62,7 @@ export default function CalendarDates() {
 
   return (
     <div className="CalendarDates">
-      <h1 className="header">React Calendar</h1>
+      {/* <h1 className="header">React Calendar</h1> */}
       <div className="calendar-container">
         <Calendar onChange={handleDateChange}
         value={date}
@@ -103,10 +103,20 @@ export default function CalendarDates() {
       </div>
 
       <div className="drink-list">
-        <h4>Drinks for {date.toDateString()}</h4>
+        <h4>On {format(date, 'EEEE dd MMM')} you drunk...</h4>
         <ul>
           {getDrinksForSelectedDate().map((drink, index) => (
-            <li key={index}>{drink.type.name}</li>
+                  <li key={drink._id} className='listed-drinks'>
+                  <div className="listed-drinks-image">
+                    <img src={`/assets/drinks/${drink.type.imageUrl}`} alt="" />
+                  </div>
+                  <div className='listed-drinks-details'>
+                    {drink.numConsumptions} {drink.type.name} -
+                    <div className='listed-drinks-date'>
+                      {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
+                    </div>
+                  </div>
+                </li>
             
           ))}
         </ul>
@@ -114,3 +124,26 @@ export default function CalendarDates() {
     </div>
   );
 }
+
+
+
+// {userDrinks ? (
+//   <ul>
+//     {userDrinks.map((drink) => (
+      // <li key={drink._id} className='listed-drinks'>
+      //   <div className="listed-drinks-image">
+      //     <img src={`/assets/drinks/${drink.type.imageUrl}`} alt="" />
+      //   </div>
+      //   <div className='listed-drinks-details'>
+      //     {drink.numConsumptions} {drink.type.name} -
+      //     <div className='listed-drinks-date'>
+      //       {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
+      //     </div>
+      //   </div>
+      // </li>
+//     ))}
+//   </ul>
+// ) : (
+//   <p>Loading...</p>
+  
+// )}

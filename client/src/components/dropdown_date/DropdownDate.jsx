@@ -11,14 +11,18 @@ function DropdownDate({onFilterChange}) {
     }
 
   return (
-    <div>
-      <label htmlFor="timeFilter">Select Time Period:</label>
-      <select id="timeFilter" value={selectedFilter} onChange={handleFilterChange}>
+    <div className='filter-menu'>
+      <div className="menu-options">
+      <select id="timeFilter" 
+      value={selectedFilter}
+      onChange={handleFilterChange}>
         <option value="week">Week</option>
         <option value="month">Month</option>
         <option value="year">Year</option>
         <option value="all">All Time</option>
       </select>
+        <p htmlFor="timeFilter" id="filter-info">Select your time filter</p>
+      </div>
     </div>
   );
 }

@@ -3,22 +3,31 @@
     justify-content: center;
     align-items: center;
     height: 90px;
+    position: relative;
+    
 }
 
-.sticky {
+.Navbar-bar {
+    overflow: hidden;
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 20px 0 20px 0;
-    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
     background-color: white;
-  }
+    padding: 15px;
+    border-top: 0.5px solid var(--grey);
+
+}
+
+
 
 .navbar-icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* width: 100%; */
+
+
 }
 
 .navbar-icons a {
@@ -26,14 +35,15 @@
     background-color: transparent;
 }
 .navbar-icons svg {
-    height: 50px;
+    height: 35px;
     max-width: 110px;
+    margin-right: 40px;
 }
 
 .navbar-icons svg path {
     transition: fill 0.2s;
 }
-
+/* 
 .navbar-icons a.active svg path{
     fill: var(--yellow-strong)
-}
+} */

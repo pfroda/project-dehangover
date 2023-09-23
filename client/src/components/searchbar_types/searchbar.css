@@ -1,109 +1,56 @@
-.searchInputs {
-    margin-top: 105px;
-    display: flex;
-  }
+
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} 
   
-  .search input {
-    background-color: white;
-    border: 0;
-    border-radius: 2px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-    font-size: 18px;
-    padding: 15px;
-    height: 30px;
-    width: 300px;
-  }
-  
-  .searchIcon {
-    height: 60px;
-    width: 50px;
-    background-color: white;
-    display: grid;
-    place-items: center;
-  }
-  
-  input:focus {
+input:focus {
     outline: none;
-  }
-  .searchIcon svg {
-    font-size: 35px;
-  }
-  
-  .dataResult {
-    margin-top: 5px;
-    width: 300px;
-    height: 200px;
-    background-color: white;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    overflow: hidden;
-    overflow-y: auto;
-  }
-  
-  .dataResult::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .dataResult .dataItem {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    color: black;
-  }
-  
-  .dataItem p {
-    margin-left: 10px;
-  }
-  a {
-    text-decoration: none;
-  }
-  
-  a:hover {
-    background-color: lightgrey;
-  }
-  
-  #clearBtn {
+}
+
+
+#clearBtn {
     cursor: pointer;
   }
 
-  .selected-type {
-    border: 2px solid var(--yellow-strong); /* Add your preferred border styles */
+.selected-type {
+    border: 2px solid var(--yellow-strong);
     padding: 10px;
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f0f0f0; /* Add your preferred background color */
-  }
+    background-color: #f0f0f0;
+}
   
-  .selected-type button {
-    background-color: var(--yellow-strong); /* Add your preferred button background color */
+.selected-type button {
+    background-color: var(--yellow-strong);
     color: #fff;
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-  }
+}
   
-  .selected-type button:hover {
-    background-color: var(--yellow-strong-hover); /* Add your preferred button hover color */
-  }
+.selected-type button:hover {
+    background-color: var(--yellow-strong-hover);
+}
 
-  .numConsumptions {
+.numConsumptions {
     background-color: transparent;
     border: 0;
     display: flex;
-  }
+}
 
-  .selected-type-img img {
+.selected-type-img img {
     height: 50px;
-  }
+}
 
-  .dropdown-option {
+.dropdown-option {
     padding: 5px;
     margin-bottom: 1px;
     background-color: #FFFDF5;
     cursor: pointer
-  }
+}
 
   

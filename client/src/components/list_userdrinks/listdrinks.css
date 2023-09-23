@@ -19,6 +19,7 @@
 }
 
 .listed-drinks-image img {
+    /* IMAGE HEIGHT MAKES SCREEN TO NARROW*/
     height: 50px;
     /* width: 60px; */
     padding-right: 10px;
