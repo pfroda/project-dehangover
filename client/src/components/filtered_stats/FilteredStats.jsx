@@ -41,6 +41,13 @@ const { userHangovers, getHangovers } = useHangover();
     async function calculateUserStats() { //filterUserDrinks
       try {
 
+        if (userDrinks.length === 0) {
+          await getDrinks(user.id);
+        }
+        if (userHangovers.length === 0) {
+          await getHangovers(user.id);
+        }
+  
         // DRINKS //
 
         // Filter the drinks based on the selected filter
@@ -115,6 +122,10 @@ const { userHangovers, getHangovers } = useHangover();
     calculateUserStats();
   }, [selectedFilter, user.id]); // need this to rerender if not will stay in default (week)
 
+  // , userDrinks, userHangovers, getDrinks, getHangovers
+
+
+
   // to get filter change from child - dropdown.date
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
@@ -172,9 +183,13 @@ const filterDrinksByDate = (drinks, filter) => {
 
 
   return (
-    <div>
+    <div className='filtered-stats'>
 
-        <h1>Hey {user.firstname}, you've had <span id="totalHangovers">{totalHangovers}</span> hangovers</h1>
+        <h2>hey {user.firstname}, {selectedFilter !== 'all' ? (
+<span>this {selectedFilter}</span>
+) : (
+<span>in total</span>
+)} you've had <span id="totalHangovers">{totalHangovers}</span> hangovers</h2>
 
       <DropdownDate onFilterChange={handleFilterChange} />
       
@@ -218,17 +233,25 @@ const filterDrinksByDate = (drinks, filter) => {
   </div>
 </div>
 
+
 {selectedType && (
-    <div className="selected-type-data">
-      <h5>{selectedType.type}</h5>
-        
-      {userDrinks
+  <div className="selected-type-data">
+    <h5>{selectedType.type}</h5>
+
+    {userDrinks
+      .filter((drink) => drink.type.name === selectedType.type)
+      .sort((a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed))
+      .map((drink) => (
+        <p key={drink._id}>Last consumed: {new Date(drink.dateConsumed).toLocaleDateString()}</p>
+      ))[0]}
+
+    <p>Total consumptions: {
+      userDrinks
         .filter((drink) => drink.type.name === selectedType.type)
-        .map((drink) => (
-          <p key={drink._id}>Last consumed: {new Date(drink.dateConsumed).toLocaleDateString()}</p>
-        ))}
-    </div>
-  )}
+        .reduce((total, drink) => total + drink.numConsumptions, 0)
+    }</p>
+  </div>
+)}
       
     </div>
   );

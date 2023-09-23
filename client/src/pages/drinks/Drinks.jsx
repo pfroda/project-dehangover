@@ -3,10 +3,12 @@ import Searchbar from '../../components/searchbar_types/Searchbar';
 import ListDrinks from '../../components/list_userdrinks/ListDrinks';
 import HangoverForm from '../../components/hangoverform/HangoverForm';
 import Navbar from '../../components/navbar/Navbar';
+import Header from '../../components/header/Header';
 
 function Drinks() {
   return (
-    <div>Drinks
+    <div>
+      <Header></Header>
       <Searchbar ></Searchbar>
       <ListDrinks></ListDrinks>
       <HangoverForm></HangoverForm>

@@ -43,7 +43,7 @@
 .navbar-icons svg path {
     transition: fill 0.2s;
 }
-/* 
+
 .navbar-icons a.active svg path{
     fill: var(--yellow-strong)
-} */
+}

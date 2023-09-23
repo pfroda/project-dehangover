@@ -76,34 +76,45 @@ export default function CalendarDates() {
         />
       </div>
 
+  
       <div className="hangover-details">
 
 
         {getHangoversForSelectedDate().map((hangover, index) => (
           
           <>
-          <p key={index}>{hangover.hangoverScore}</p>
+          <h4>Your hangover score:</h4>
+          <h4 key={index}>{hangover.hangoverScore}</h4>
+          <h4>Your wrote:</h4>
+          <div className="hangover-comments">
           <p>{hangover.hangoverComments}</p>
+
+          </div>
           
 
-{/* 
+        {/* 
         <div key={index} className="hangover-date-score">
 
         <div className="filler-bar" style={{
               width: `${hangover.hangoverScore}%`,
               backgroundColor: "black",
             }}>
-       </div>
+        </div>
 
         </div> */}
           </>
 
         ))}
 
-      </div>
+</div>
 
       <div className="drink-list">
-        <h4>On {format(date, 'EEEE dd MMM')} you drunk...</h4>
+        {/* <h4>On {format(date, 'EEEE dd MMM')} you drunk...</h4> */}
+
+        {getDrinksForSelectedDate().length > 0 ? (
+          <>
+          
+        <h4>The previous night you drunk...</h4>
         <ul>
           {getDrinksForSelectedDate().map((drink, index) => (
                   <li key={drink._id} className='listed-drinks'>
@@ -114,13 +125,25 @@ export default function CalendarDates() {
                     {drink.numConsumptions} {drink.type.name} -
                     <div className='listed-drinks-date'>
                       {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
-                    </div>
-                  </div>
-                </li>
-            
-          ))}
+                    </div></div>
+                </li>))}
         </ul>
+          
+          </>
+        ) : (
+          <p>No hangovers that day :)</p>
+        )
+        
+      }
+
       </div>
+
+
+
+
+
+
+
     </div>
   );
 }
