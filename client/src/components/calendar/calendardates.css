@@ -2,6 +2,25 @@
     color: black
 }
 
+/* colors for hangovers */
+.wild-highlight {
+  background-color: var(--red) !important;
+}
+
+.high-highlight {
+  background-color: var(--yellow-strong-hover) !important;
+}
+
+.mid-highlight {
+  background-color: var(--yellow-soft) !important;
+}
+
+.good-highlight {
+  background-color: var(--green) !important;
+}
+
+
+/* changing calendar default styles */
 .react-calendar {
     width: 350px;
     max-width: 100%;

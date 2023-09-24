@@ -36,7 +36,6 @@ function SearchDrink({ onTypeSelect }) {
 
   return (
     <div>
-      
       <input
         type="text"
         placeholder="Search for a drink"

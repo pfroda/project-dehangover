@@ -12,10 +12,10 @@ function Navbar() {
         <div className='Navbar-bar'>
             <div className="navbar-icons">
                 <NavLink to='/calendar' activeclassname='active'>
-                    <ReactSVG src={calendarIcon} alt="calendar" />
+                    <ReactSVG src={calendarIcon} alt="calendar"  />
                 </NavLink>
                 <NavLink to='/drinks' activeclassname='active'>
-                    <ReactSVG src={drinksIcon} alt="drinks" />
+                    <ReactSVG src={drinksIcon} alt="drinks"/>
                 </NavLink>
                 <NavLink to='/stats' activeclassname='active'>
                     <ReactSVG src={statsIcon} alt="stats" />

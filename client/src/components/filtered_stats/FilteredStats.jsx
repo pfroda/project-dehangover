@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext'; 
 import { useDrink } from '../../context/DrinksContext';
 import { useHangover } from '../../context/HangoversContext';
+
 import DropdownDate from '../dropdown_date/DropdownDate';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -91,7 +92,7 @@ const [displayColor, setDisplaycolor] = useState()
             setTotalDrinks(totalDrinks);
         }
 
-         // Convert the object into an array of objects
+         // Convert the object into array of objects
         const mostConsumedTypesArray = Object.entries(filteredDrinksByType).map(
         ([type, count]) => ({ type, count })
         );
@@ -102,7 +103,7 @@ const [displayColor, setDisplaycolor] = useState()
 
         // HANGOVERS
     
-          // Filter hangovers based on the selected date filter
+          // Filter hangovers based on selected date filter
         const filteredHangovers = filterHangoversByDate(userHangovers, selectedFilter);
         setUserFilteredHangovers(filteredHangovers);
 
@@ -201,17 +202,13 @@ const filterDrinksByDate = (drinks, filter) => {
       <DropdownDate onFilterChange={handleFilterChange} />
       
       <div className="hangover-stats">
+      <div className="hangover-circle-num">
+      <h4>{avgScoreFilteredHangovers.toFixed(2)}</h4>
+      <p>Avg. Hangover</p>
+
+      </div>
 
       <div className="hangover-circle">
-        {/* <CircularProgressbar
-        value={avgScoreFilteredHangovers* 10}
-        text={`${avgScoreFilteredHangovers.toFixed(2)}/10`}
-        styles={buildStyles({
-          pathColor: setCircleColor(),
-          textColor: '#000000',
-          textSize: '14px'
-        })}
-        ></CircularProgressbar> */}
 
       <Circle
       percent={avgScoreFilteredHangovers* 10}
@@ -222,8 +219,9 @@ const filterDrinksByDate = (drinks, filter) => {
 
 
       </div>
-      <p>{avgScoreFilteredHangovers.toFixed(2)}/10</p>
       </div>
+
+      
         <div className='numeric-stats'>
             <div className='numeric-stat-box numeric-stats-total'>
             <p className='numeric-stats-num'>{totalDrinks}</p>

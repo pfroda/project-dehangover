@@ -50,33 +50,54 @@ export default function CalendarDates() {
     setDate(newDate);
   };
 
+  const tileClassName = ({ date }) => {
 
+    const wildHangoverDates = userHangovers
+    .filter((hangover) => hangover.hangoverScore > 7.5)
+    .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
+ 
+    const highHangoverDates = userHangovers
+    .filter((hangover) => hangover.hangoverScore > 5)
+    .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
+    
+    const midHangoverDates = userHangovers
+    .filter((hangover) => hangover.hangoverScore > 2.5)
+    .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
 
+    const goodHangoverDates = userHangovers
+    .filter((hangover) => hangover.hangoverScore >= 0.1)
+    .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
 
-  // const getColor = () => {
-  //   // Calculate color based on rating click
-  //   if (barWidth >= 75) return "#c0564a";
-  //   if (barWidth >= 50) return "#fdc52b";
-  //   if (barWidth >= 25) return "#ffe9ad";
-  //   return "#81b44c";
-  // };
+    const formattedDate = format(date, 'yyyy-MM-dd');
+    console.log(wildHangoverDates)
 
+    if (wildHangoverDates.includes(formattedDate)) {
+      return 'wild-highlight';
+
+    } else if (highHangoverDates.includes(formattedDate)) {
+      return 'high-highlight';
+
+    } else if (midHangoverDates.includes(formattedDate)) {
+      return 'mid-highlight';
+
+    } else if (goodHangoverDates.includes(formattedDate)) {
+      return 'good-highlight';
+
+    } 
+
+    return '';
+  };
+  
 
 
   return (
     <div className="CalendarDates">
       <h2>Check out all your previous hangovers</h2>
-      {/* <h1 className="header">React Calendar</h1> */}
       <div className="calendar-container">
         <Calendar onChange={handleDateChange}
         value={date}
         locale="en-GB"
-        // tileClassName={({date, view}) => {
-        //   if(hangoverDates.some(hangoverDate => isSameDay(hangoverDate, date))) {
-        //     console.log('Date matched:', date);
-        //     return 'highlight-red'
-        //   }
-        // }}
+        tileClassName={tileClassName}
         />
       </div>
 
@@ -102,17 +123,6 @@ export default function CalendarDates() {
 
           </div>
           
-
-        {/* 
-        <div key={index} className="hangover-date-score">
-
-        <div className="filler-bar" style={{
-              width: `${hangover.hangoverScore}%`,
-              backgroundColor: "black",
-            }}>
-        </div>
-
-        </div> */}
           </>
 
         ))}

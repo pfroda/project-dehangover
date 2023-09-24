@@ -1,14 +1,12 @@
 .numeric-stats {
     display: flex;
-    margin-bottom: 20px;
-    
+    margin-bottom: 10px;
 }
 
 .numeric-stat-box {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    /* border: 1px solid #ccc; */
     text-align: center;
   }
 
@@ -19,19 +17,24 @@
 
 .most-consumed-selection {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap as needed */
   }
   
   .consumed-type {
-    border: 1px solid #ccc;
-    padding: 10px;
+    /* border: 1px solid #ccc; */
+    /* padding: 20px; */
+    padding-top: 20px;
     text-align: center;
   }
 
   .consumed-type img {
-    height: 40px;
+    height: 60px;
+  }
+
+  .consumed-type img:hover {
+    transition: 0.2s;
+    transform: translateX(5px) rotate(10deg) translateY(2px);
   }
   
   /* .consumed-type img {
@@ -51,13 +54,33 @@
   
   .hangover-stats {
     display: flex;
+    position: relative;
     justify-content: center;
     align-items: center;
     padding: 30px;
   }
+
+  .hangover-circle-num {
+    position: absolute;
+    z-index: 1;
+    text-align: center; 
+  }
+
+  .hangover-circle-num h4 {
+    font-size: 25px;
+    font-weight: 400;
+    padding-bottom: 2px;
+  }
+  
   
   .hangover-circle {
     display: flex;
-    width: 120px;
-    /* padding: 10px; */
+    width: 180px;
+    justify-content: center;
+    align-items: center;
+   
+  }
+
+  .selected-type-data {
+    padding-top: 20px;
   }
