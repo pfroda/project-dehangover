@@ -4,12 +4,7 @@ import Header from '../../components/header/Header'
 
 function Signup() {
   return (
-    
-      <>
-      <Header></Header>
-      <SignupForm></SignupForm>
-      </>
-    
+    <SignupForm></SignupForm>
   )
 }
 

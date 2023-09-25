@@ -6,7 +6,6 @@ import './signin.css'
 function Signin() {
   return (
     <>
-      <Header></Header>
       <SigninForm></SigninForm>
     </>
   )

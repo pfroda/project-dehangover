@@ -1,6 +1,5 @@
 const mongoose = require('./db');
 const { isEmail } = require('validator');
-// const bcrypt = require('bcrypt')
 
 const userSchema = mongoose.Schema({
   firstName: {
@@ -21,7 +20,6 @@ const userSchema = mongoose.Schema({
 }, {
     timestamps: true
 });
-
 
 const User = mongoose.model('user', userSchema);
 module.exports = User

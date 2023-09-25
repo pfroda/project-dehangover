@@ -2,16 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext'; 
 import { useDrink } from '../../context/DrinksContext';
 import { useHangover } from '../../context/HangoversContext';
-
 import DropdownDate from '../dropdown_date/DropdownDate';
-import 'react-circular-progressbar/dist/styles.css';
-
-import { Line, Circle } from 'rc-progress';
+import { Circle } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
-// import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-
+import 'react-circular-progressbar/dist/styles.css';
 import './filteredstats.css';
-
 
 
 // DIRTY AF, SORRY NEED TO CLEAN -> STRUCTURE NEEDED DATA BETTER AND PROBABLY NOT HERE
@@ -22,7 +17,6 @@ function FilteredStats() {
   const { userHangovers, getHangovers } = useHangover();
 
   const [displayColor, setDisplaycolor] = useState()
-// date filter
   const [selectedFilter, setSelectedFilter] = useState('week');
 
 
@@ -44,10 +38,8 @@ function FilteredStats() {
     getDrinks(user.id);
     getHangovers(user.id);
     
-
     async function calculateUserStats() { //filterUserDrinks
       try {
-
         if (userDrinks.length === 0) {
           await getDrinks(user.id);
         }
@@ -61,9 +53,6 @@ function FilteredStats() {
         const filteredDrinks = filterDrinksByDate(userDrinks, selectedFilter);
   
         setUserFilteredDrinks(filteredDrinks);
-        // const sortedDrinks = filteredDrinks.sort(
-        //     (a, b) => new Date(b.dateConsumed) - new Date(a.dateConsumed)
-        //   );
 
         // Calculate total and most consumed type on selected filter
 
@@ -110,15 +99,12 @@ function FilteredStats() {
         const totalFilteredHangovers = filteredHangovers.length;
 
         setTotalHangovers(totalFilteredHangovers)
-        
-        console.log(totalFilteredHangovers);
-        // console.log(totalHangovers)
+
 
         const avgScoreFilteredHangovers = filteredHangovers.reduce((accumulator, hangover) => {
           return accumulator + hangover.hangoverScore}, 0) / totalFilteredHangovers;
-      
+  
           setAvgScoreFilteredHangovers(avgScoreFilteredHangovers)
-        console.log(avgScoreFilteredHangovers)
 
       
       } catch (error) {
@@ -164,7 +150,6 @@ const filterDrinksByDate = (drinks, filter) => {
     }
   };
 
-
   const filterHangoversByDate = (userHangovers, filter) => {
     if (filter === 'all') {
       return userHangovers;
@@ -188,8 +173,6 @@ const filterDrinksByDate = (drinks, filter) => {
     }
   };
 
-
-
   return (
     <div className='filtered-stats'>
 
@@ -205,7 +188,6 @@ const filterDrinksByDate = (drinks, filter) => {
       <div className="hangover-circle-num">
       <h4>{avgScoreFilteredHangovers.toFixed(2)}</h4>
       <p>Avg. Hangover</p>
-
       </div>
 
       <div className="hangover-circle">
@@ -215,13 +197,9 @@ const filterDrinksByDate = (drinks, filter) => {
       strokeWidth={5.5}
       trailWidth={5.5}
       strokeColor={setHangoverColor(avgScoreFilteredHangovers)} /> 
-
-
-
       </div>
       </div>
 
-      
         <div className='numeric-stats'>
             <div className='numeric-stat-box numeric-stats-total'>
             <p className='numeric-stats-num'>{totalDrinks}</p>
@@ -238,7 +216,6 @@ const filterDrinksByDate = (drinks, filter) => {
             <p>Avg. Drinks/Nights out</p>
             </div>
         </div>
-
         <div>
 
   <h4>Most Consumed Drinks</h4>
@@ -250,7 +227,6 @@ const filterDrinksByDate = (drinks, filter) => {
           {userDrink && (
             <>
               <img src={`/assets/drinks/${userDrink.type.imageUrl}`} alt={consumed.type} onClick={()=>setSelectedType(consumed)}/>
-              {/* <p>{consumed.type}</p> */}
             </>
           )}
         </div>
@@ -258,7 +234,6 @@ const filterDrinksByDate = (drinks, filter) => {
     })}
   </div>
 </div>
-
 
 {selectedType && (
   <div className="selected-type-data">
@@ -278,7 +253,6 @@ const filterDrinksByDate = (drinks, filter) => {
     }</p>
   </div>
 )}
-      
     </div>
   );
 }

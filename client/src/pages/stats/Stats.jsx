@@ -8,9 +8,8 @@ import Header from '../../components/header/Header';
 function Stats() {
   return (
     <div className='Stats'>
-    <Header></Header>
-    <FilteredStats></FilteredStats>
-    <Navbar/> 
+      <FilteredStats></FilteredStats>
+      <Navbar/> 
     </div>
   )
 }

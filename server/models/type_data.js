@@ -1,6 +1,5 @@
 const Types = require('./Type');
 
-
 // Define an array of drink types (predefined drinks with data) and add them to db; don't allow duplicates
 
 async function addDrinkTypes() {
@@ -78,70 +77,68 @@ const drinkTypes = [
   },
 
   // destillates
-      {
-        name: 'Whisky On The Rock',
-        category: 'baseLiquors',
-        alcohol: 0.41,
-        imageUrl: 'whisky.png',
-      },
-      {
-        name: 'Rum',
-        category: 'baseLiquors',
-        alcohol: 0.40,
-        imageUrl: 'rum.png',
-      },
-      {
-        name: 'Cognac',
-        category: 'baseLiquors',
-        alcohol: 0.40,
-        imageUrl: 'cognac.png',
-      },
-      {
-        name: 'Vodka',
-        category: 'baseLiquors',
-        alcohol: 0.38,
-        imageUrl: 'vodka.png',
-      },
-      {
-        name: 'Tequila',
-        category: 'baseLiquors',
-        alcohol: 0.39,
-        imageUrl: 'tequila.png',
-      },
+  {
+    name: 'Whisky On The Rock',
+    category: 'baseLiquors',
+    alcohol: 0.41,
+    imageUrl: 'whisky.png',
+  },
+  {
+    name: 'Rum',
+    category: 'baseLiquors',
+    alcohol: 0.40,
+    imageUrl: 'rum.png',
+  },
+  {
+    name: 'Cognac',
+    category: 'baseLiquors',
+    alcohol: 0.40,
+    imageUrl: 'cognac.png',
+  },
+  {
+    name: 'Vodka',
+    category: 'baseLiquors',
+    alcohol: 0.38,
+    imageUrl: 'vodka.png',
+  },
+  {
+    name: 'Tequila',
+    category: 'baseLiquors',
+    alcohol: 0.39,
+    imageUrl: 'tequila.png',
+  },
 
-      // cocktails
-      {
-        name: 'Gin and Tonic',
-        category: 'cocktails',
-        alcohol: 0.16,
-        imageUrl: 'gintonic.png',
-      },
-      {
-        name: 'Moscow Mule',
-        category: 'cocktails',
-        alcohol: 0.11,
-        imageUrl: 'moscow.png',
-      },
-      {
-        name: 'Rum & Cola',
-        category: 'cocktails',
-        alcohol: 0.14,
-        imageUrl: 'rumcola.png',
-      },
-    {
-      name: 'Bloody Mary',
-      category: 'cocktails',
-      alcohol: 0.09,
-      imageUrl: 'bloodymary.png',
-    },
-    {
-      name: 'Old Fashioned',
-      category: 'cocktails',
-      alcohol: 0.4,
-      imageUrl: 'oldfashioned.png',
-    },
-
-
+  // cocktails
+  {
+    name: 'Gin and Tonic',
+    category: 'cocktails',
+    alcohol: 0.16,
+    imageUrl: 'gintonic.png',
+  },
+  {
+    name: 'Moscow Mule',
+    category: 'cocktails',
+    alcohol: 0.11,
+    imageUrl: 'moscow.png',
+  },
+  {
+    name: 'Rum & Cola',
+    category: 'cocktails',
+    alcohol: 0.14,
+    imageUrl: 'rumcola.png',
+  },
+  {
+    name: 'Bloody Mary',
+    category: 'cocktails',
+    alcohol: 0.09,
+    imageUrl: 'bloodymary.png',
+  },
+  {
+    name: 'Old Fashioned',
+    category: 'cocktails',
+    alcohol: 0.4,
+    imageUrl: 'oldfashioned.png',
+  },
   ];
   
 

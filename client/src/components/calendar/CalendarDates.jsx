@@ -3,11 +3,9 @@ import Calendar from 'react-calendar';
 import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
-
 import { format, isSameDay, parseISO, differenceInHours } from 'date-fns';
 import { Line } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
-
 import './calendardates.css';
 
 export default function CalendarDates() {
@@ -65,8 +63,8 @@ export default function CalendarDates() {
     setDate(newDate);
   };
 
+  // Changing calendar tiles color in relation to its hangover score
   const tileClassName = ({ date }) => {
-
     const wildHangoverDates = userHangovers
     .filter((hangover) => hangover.hangoverScore > 7.5)
     .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
@@ -84,7 +82,6 @@ export default function CalendarDates() {
     .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
 
     const formattedDate = format(date, 'yyyy-MM-dd');
-    // console.log(wildHangoverDates)
 
     if (wildHangoverDates.includes(formattedDate)) return 'wild-highlight'
     else if (highHangoverDates.includes(formattedDate)) return 'high-highlight';
@@ -113,8 +110,6 @@ export default function CalendarDates() {
           
           <>
           <h4>Your hangover score:</h4>
-          {/* <ProgressBar completed={hangover.hangoverScore*10}></ProgressBar> */}
-
           <Line
           percent={hangover.hangoverScore*10} strokeWidth={2.5}
           trailWidth={2.5}
@@ -134,11 +129,8 @@ export default function CalendarDates() {
 </div>
 
       <div className="drink-list">
-        {/* <h4>On {format(date, 'EEEE dd MMM')} you drunk...</h4> */}
-
         {getHangoversForSelectedDate().length > 0 ? (
           <>
-          
         <h4>The previous night you drunk...</h4>
         <ul>
           {getDrinksForSelectedDate().map((drink, index) => (
@@ -153,45 +145,13 @@ export default function CalendarDates() {
                     </div></div>
                 </li>))}
         </ul>
-          
           </>
         ) : (
           <p>No hangovers here :)</p>
         )
         
       }
-
       </div>
-
-
-
-
-
-
-
     </div>
   );
 }
-
-
-
-// {userDrinks ? (
-//   <ul>
-//     {userDrinks.map((drink) => (
-      // <li key={drink._id} className='listed-drinks'>
-      //   <div className="listed-drinks-image">
-      //     <img src={`/assets/drinks/${drink.type.imageUrl}`} alt="" />
-      //   </div>
-      //   <div className='listed-drinks-details'>
-      //     {drink.numConsumptions} {drink.type.name} -
-      //     <div className='listed-drinks-date'>
-      //       {format(new Date(drink.dateConsumed), 'dd MMM - HH:mm\'h\'')}
-      //     </div>
-      //   </div>
-      // </li>
-//     ))}
-//   </ul>
-// ) : (
-//   <p>Loading...</p>
-  
-// )}

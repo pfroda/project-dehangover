@@ -54,7 +54,7 @@ function HangoverForm() {
             {!submitted ? (
                 <p onClick={toggleFormVisibility}>Nights over? <span id="underline">Rate your hangover</span></p>
             ) : (
-                <h3>Thanks! Now you can start another drinking night</h3> 
+                <h3>Hangover rated! Now you can start another drinking night</h3> 
             )}
 
             {formVisible && !submitted && (

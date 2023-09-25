@@ -9,35 +9,30 @@ import Welcome from './pages/welcome/Welcome';
 import Calendar from './pages/calendar/Calendar';
 import Drinks from './pages/drinks/Drinks';
 import Stats from './pages/stats/Stats';
-import Navbar from './components/navbar/Navbar';
+import Header from './components/header/Header';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      {/* <h1>DeHangover</h1> */}
-      
-    <AuthProvider>
-    <DrinkProvider>
-    <HangoverProvider>
-
-   
-      <Router>
-        <Routes>
-          <Route path="/" element={<Signin />} />
-          <Route path="/login" element={<Signin />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/welcome" element={<Welcome />} />
-          <Route path="/calendar" element={<Calendar />} />
-          <Route path="/drinks" element={<Drinks />} />
-          <Route path="/stats" element={<Stats />} />
-        </Routes>
-      
-      </Router>
-
-      </HangoverProvider>
-      </DrinkProvider>
+    <div className="App">     
+      <AuthProvider>
+        <DrinkProvider>
+          <HangoverProvider>
+            <Header/>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<Signin />} />
+                  <Route path="/login" element={<Signin />} />
+                  <Route path="/signin" element={<Signin />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route path="/welcome" element={<Welcome />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/drinks" element={<Drinks />} />
+                  <Route path="/stats" element={<Stats />} />
+                </Routes>
+              </Router>
+          </HangoverProvider>
+        </DrinkProvider>
       </AuthProvider>
     </div>
   );

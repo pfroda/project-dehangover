@@ -3,25 +3,23 @@ const Type = require('../models/Type');
 
 async function postDrink (req, res) {
   try {
-    console.log('Drinking...')
     const newDrink = await Drink.create(req.body);
     res.status(201).json(newDrink)
 
   } catch (err) {
     console.log(err);
-    res.status(500).json({error: 'Internal server error'})
+    res.status(500).json({error: 'Error adding drink'})
   }
 }
 
 async function deleteDrink (req, res) {
   try {
-    console.log('Deleting drink...');
     await Drink.deleteOne({_id: req.params.id});
     res.status(201).json('Drink deleted')
 
   } catch (err) {
     console.log(err);
-    res.status(500).json({error: 'Internal server error'})
+    res.status(500).json({error: 'Error deleting drink'})
   }
 }
 
@@ -30,7 +28,6 @@ async function updateDrinkNum (req, res) {
   const newNum = req.body.numConsumptions;
 
   try {
-    console.log('Updating drink...');
     const updatedDrink = await Drink.findByIdAndUpdate(drinkId, {numConsumptions: newNum});
     res.status(201).json(updatedDrink)
 
@@ -42,7 +39,6 @@ async function updateDrinkNum (req, res) {
 
 async function getUserDrinks (req, res) {
   try {
-    // console.log('Getting user drinks...');
     const userDrinks = await Drink.find({user: req.params.id})
     .populate('type')
     .exec()
@@ -51,7 +47,7 @@ async function getUserDrinks (req, res) {
 
   } catch (err) {
     console.log(err);
-    res.status(500).json({error: 'Internal server error'})
+    res.status(500).json({error: 'Error getting drink'})
   }
 }
 

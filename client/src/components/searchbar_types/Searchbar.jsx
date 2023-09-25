@@ -4,8 +4,7 @@ import { getTypes } from '../../services/apiType';
 import { postDrink } from '../../services/apiDrink';
 import './searchbar.css'
 
-
-// DIRTY AF and still using api services and not UseContext...
+// DIRTY AF and still using api services
 
 function TypeSearch({ onTypeSelect }) {
 
@@ -22,7 +21,6 @@ function TypeSearch({ onTypeSelect }) {
 
     try {
       const types = await getTypes(searchQuery);
-      // console.log(types);
 
       const filteredTypes = types.filter((type) =>
         type.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -79,16 +77,15 @@ function DrinkForm({ selectedType, onSubmit }) {
         console.error('User or selectedType is not available.');
         return;
       }
-      console.log(user)
+
       const newDrink = {
         user: user.id,
         type: selectedType._id,
         numConsumptions,
       };
-
       // Make the API call to submit the new drink
       await postDrink(newDrink);
-      // console.log(newDrink);
+
     } catch (error) {
       console.error('Error submitting new drink:', error);
     }
@@ -98,17 +95,18 @@ function DrinkForm({ selectedType, onSubmit }) {
     selectedType && (
       <div className="selected-type">
         <div className="selected-type-img">
-        <img src={`/assets/drinks/${selectedType.imageUrl}`} alt="" />
+          <img src={`/assets/drinks/${selectedType.imageUrl}`} alt="" />
         </div>
 
         <p>{selectedType.name}</p>
+        
         <input className="numConsumptions"
           type="number"
           placeholder="Number of Consumptions"
           value={numConsumptions}
           min="1"
-          onChange={(e) => setNumConsumptions(e.target.value)}
-        />
+          onChange={(e) => setNumConsumptions(e.target.value)}/>
+
         <button onClick={handleDrinkSubmission}>Drink</button>
       </div>
     )
@@ -122,16 +120,10 @@ function Searchbar() {
     setSelectedType(type);
   };
 
-  const handleSubmit = async (newDrink) => {
-    // Handle the submission of the new drink here
-    // Call your API to create the new drink
-    console.log('Submitting new drink:', newDrink);
-  };
-
   return (
     <div>
       <TypeSearch onTypeSelect={handleTypeSelection} />
-      <DrinkForm selectedType={selectedType} onSubmit={handleSubmit} />
+      <DrinkForm selectedType={selectedType} />
     </div>
   );
 }

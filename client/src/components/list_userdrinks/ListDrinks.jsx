@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
@@ -11,11 +11,10 @@ function ListDrinks() {
   const { userHangovers, getHangovers } = useHangover()
 
   useEffect(() => {
-    
     getDrinks(user.id);
     getHangovers(user.id)
-  
   }, [userDrinks]);
+
   // userDrinks, user.id
   // if i add userDrinks in useEffect it keeps updating again and again, but necessary to display list automatically
 
@@ -29,7 +28,6 @@ function ListDrinks() {
   return (
     <div>
       {filteredUserDrinks.length > 0 ? (
-        
         <>
         <h4>What you've drunk</h4>
         <ul>
