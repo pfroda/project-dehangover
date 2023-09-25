@@ -19,9 +19,9 @@ import './filteredstats.css';
 function FilteredStats() {
   const { user } = useAuth();
   const { userDrinks, getDrinks } = useDrink();
-const { userHangovers, getHangovers } = useHangover();
+  const { userHangovers, getHangovers } = useHangover();
 
-const [displayColor, setDisplaycolor] = useState()
+  const [displayColor, setDisplaycolor] = useState()
 // date filter
   const [selectedFilter, setSelectedFilter] = useState('week');
 

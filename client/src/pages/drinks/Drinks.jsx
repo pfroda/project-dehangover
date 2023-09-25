@@ -4,6 +4,7 @@ import ListDrinks from '../../components/list_userdrinks/ListDrinks';
 import HangoverForm from '../../components/hangoverform/HangoverForm';
 import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
+import HangoverPrediction from '../../components/hangoverprediction/HangoverPrediction'
 
 function Drinks() {
   return (
@@ -12,6 +13,7 @@ function Drinks() {
       <h2>What are you <span id="underline">drinking</span> today?</h2>
       <Searchbar ></Searchbar>
       <ListDrinks></ListDrinks>
+      <HangoverPrediction></HangoverPrediction>
       <HangoverForm></HangoverForm>
       <Navbar/> 
     </div>
