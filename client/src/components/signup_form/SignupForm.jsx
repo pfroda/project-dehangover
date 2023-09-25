@@ -1,12 +1,8 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
-// import { useEffect } from 'react';
-// import { createUser } from '../../services/apiUser';
 import { Link, useNavigate } from 'react-router-dom';
 import './signup_form.css';
-import cover from '../../assets/images/dehangover_signup.png';
 import profile from '../../assets/images/dehangover_signin.png'
-// 
 
 function SignupForm() {
   const { signup } = useAuth();
@@ -40,11 +36,8 @@ function SignupForm() {
         <p>Already have an account? <Link to='/signin'>Sign in</Link></p>
 
       </form>
-
     </div>
   )
 }
-
-
 
 export default SignupForm

@@ -5,18 +5,18 @@ import { useHangover } from '../../context/HangoversContext';
 import DropdownDate from '../dropdown_date/DropdownDate';
 import { Circle } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
+import { filterDrinksByDate, filterHangoversByDate } from '../../utils/utils';
 import 'react-circular-progressbar/dist/styles.css';
 import './filteredstats.css';
 
 
-// DIRTY AF, SORRY NEED TO CLEAN -> STRUCTURE NEEDED DATA BETTER AND PROBABLY NOT HERE
+// DIRTY
 
 function FilteredStats() {
   const { user } = useAuth();
   const { userDrinks, getDrinks } = useDrink();
   const { userHangovers, getHangovers } = useHangover();
 
-  const [displayColor, setDisplaycolor] = useState()
   const [selectedFilter, setSelectedFilter] = useState('week');
 
 
@@ -38,8 +38,10 @@ function FilteredStats() {
     getDrinks(user.id);
     getHangovers(user.id);
     
+
     async function calculateUserStats() { //filterUserDrinks
       try {
+
         if (userDrinks.length === 0) {
           await getDrinks(user.id);
         }
@@ -114,64 +116,17 @@ function FilteredStats() {
 
     calculateUserStats();
    
-  }, [selectedFilter, user.id]); // need this to rerender if not will stay in default (week)
+  }, [selectedFilter, user.id]);
 
   // , userDrinks, userHangovers, getDrinks, getHangovers
 
 
 
-  // to get filter change from child - dropdown.date
+  // Get filter change from child - dropdown.date
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
   };
 
-
-  // Function to filter drinks by date
-const filterDrinksByDate = (drinks, filter) => {
-    if (filter === 'all') {
-      return drinks;
-    } else {
-      const currentDate = new Date();
-      currentDate.setHours(0, 0, 0, 0);
-  
-      if (filter === 'week') {
-        const oneWeekAgo = new Date(currentDate);
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneWeekAgo);
-      } else if (filter === 'month') {
-        const oneMonthAgo = new Date(currentDate);
-        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneMonthAgo);
-      } else if (filter === 'year') {
-        const oneYearAgo = new Date(currentDate);
-        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneYearAgo);
-      }
-    }
-  };
-
-  const filterHangoversByDate = (userHangovers, filter) => {
-    if (filter === 'all') {
-      return userHangovers;
-    } else {
-      const currentDate = new Date();
-      currentDate.setHours(0, 0, 0, 0);
-  
-      if (filter === 'week') {
-        const oneWeekAgo = new Date(currentDate);
-        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneWeekAgo);
-      } else if (filter === 'month') {
-        const oneMonthAgo = new Date(currentDate);
-        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneMonthAgo);
-      } else if (filter === 'year') {
-        const oneYearAgo = new Date(currentDate);
-        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-        return userHangovers.filter((hangover) => new Date(hangover.createdAt) >= oneYearAgo);
-      }
-    }
-  };
 
   return (
     <div className='filtered-stats'>

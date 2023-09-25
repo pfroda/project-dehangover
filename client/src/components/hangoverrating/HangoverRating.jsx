@@ -44,7 +44,6 @@ function HangoverRating({handleRatingChange }) {
             ></div>
         </div>
       </div>
-        
         </>
 
     );

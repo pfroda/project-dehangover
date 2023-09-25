@@ -13,9 +13,10 @@ function ListDrinks() {
   useEffect(() => {
     getDrinks(user.id);
     getHangovers(user.id)
-  }, [userDrinks]);
+  }, []);
 
-  // userDrinks, user.id
+  // userDrinks, user.id // USER DRINKS!!!!!!
+  
   // if i add userDrinks in useEffect it keeps updating again and again, but necessary to display list automatically
 
   const previousHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
@@ -45,15 +46,11 @@ function ListDrinks() {
             </li>
           ))}
         </ul>
-        
-        
         </>
       ) : (
         <p> </p>
         
       )}
-      {/* <button onClick={handleClick}>CLick me please</button> */}
-      {/* <div>{userDrinks}</div> */}
     </div>
   );
 }

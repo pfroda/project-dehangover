@@ -1,0 +1,24 @@
+.welcome-highlight {
+    background-color: var(--yellow-soft);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.highlight-text h4 {
+    padding-top: 0px;
+}
+
+.Welcome img {
+    max-width: 300px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    /* width: 100%; */
+}
+
+.highlight-text a {
+    color: black;
+    text-decoration: underline black;
+}

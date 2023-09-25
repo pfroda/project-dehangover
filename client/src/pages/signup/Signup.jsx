@@ -1,8 +1,8 @@
 import React from 'react'
-import SignupForm from '../../components/signup_form/SignupForm'
-import Header from '../../components/header/Header'
+import SignupForm from '../../components/signup_form/SignupForm';
 
 function Signup() {
+
   return (
     <SignupForm></SignupForm>
   )

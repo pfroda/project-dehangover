@@ -15,30 +15,17 @@ export default function CalendarDates() {
   const [date, setDate] = useState(new Date());
 
   const [hangoverScore, setHangoverScore] = useState(0)
-// const [hangoverDates, setHangoverDates] = useState([])
 
   useEffect(() => {
     getDrinks(user.id);
     getHangovers(user.id);
  
-    // console.log(hangoverDates)
     
   }, []);
 
-  // setHangoverDates(userHangovers.map(hangover => new Date(hangover.hangoverDate)));
 
   const mostRecentHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
 
-  // Filter drinks & hangovers for the selected date
-  // const getDrinksForSelectedDate = () => {
-  //   const dateDrinks = userDrinks.filter((drink) => {
-  //     isSameDay(new Date(drink.dateConsumed), date)
-  //     // console.log(drink.dateConsumed)
-  //   }
-  //   );
-
-  //   return dateDrinks;
-  // };
   const getDrinksForSelectedDate = () => {
     const drinksForLast24Hours = userDrinks.filter((drink) => {
       const drinkDate = new Date(drink.dateConsumed);
@@ -48,8 +35,6 @@ export default function CalendarDates() {
 
     return drinksForLast24Hours;
   };
-
-
 
   const getHangoversForSelectedDate = () => {
     const dateHangovers = userHangovers.filter((hangover) => 
@@ -119,9 +104,7 @@ export default function CalendarDates() {
           <h4>You wrote:</h4>
           <div className="hangover-comments">
           <p>{hangover.hangoverComments}</p>
-
           </div>
-          
           </>
 
         ))}

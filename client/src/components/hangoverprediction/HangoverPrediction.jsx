@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
@@ -58,11 +57,10 @@ function HangoverPrediction () {
         const drinksBeforePreviousHangover = userDrinks.filter((drink) => new Date(drink.dateConsumed) < new Date(previousHangoverDate));
 
 
-         // Log your intermediate values for debugging
-    console.log('Total Hangover Scores:', totalHangoverScores);
-    console.log('Previous Hangover Date:', previousHangoverDate);
-    console.log('Drinks After Previous Hangover:', drinksAfterPreviousHangover);
-    console.log('Drinks Before Previous Hangover:', drinksBeforePreviousHangover);
+    // console.log('Total Hangover Scores:', totalHangoverScores);
+    // console.log('Previous Hangover Date:', previousHangoverDate);
+    // console.log('Drinks After Previous Hangover:', drinksAfterPreviousHangover);
+    // console.log('Drinks Before Previous Hangover:', drinksBeforePreviousHangover);
 
         // setTotalHangoverScores(totalScores);
         
@@ -76,9 +74,9 @@ function HangoverPrediction () {
 
         const tonightDrinkTypes = new Set(drinksAfterPreviousHangover.map((drink) => drink.type.name)).size;
 
-        console.log('Tonight Alcohol Consumption:', tonightAlcoholConsumption);
-        console.log('Total Alcohol Consumption:', totalAlcoholConsumption);
-        console.log('Tonight Drink Types:', tonightDrinkTypes);
+        // console.log('Tonight Alcohol Consumption:', tonightAlcoholConsumption);
+        // console.log('Total Alcohol Consumption:', totalAlcoholConsumption);
+        // console.log('Tonight Drink Types:', tonightDrinkTypes);
 
         // adding variable drink types increases hangover
         const estimatedHangoverScore = ((tonightAlcoholConsumption*(totalHangoverScores/userHangovers.length))+(tonightDrinkTypes*0.1) / ((totalAlcoholConsumption)/userHangovers.length));
@@ -92,8 +90,6 @@ function HangoverPrediction () {
         console.log(err)
       }
     }
-
-
 
     return (
       <>
