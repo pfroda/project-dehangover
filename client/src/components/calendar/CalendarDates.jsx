@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
 
-import { format, isSameDay } from 'date-fns';
+import { format, isSameDay, parseISO } from 'date-fns';
 import { Line } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
 
@@ -31,8 +31,10 @@ export default function CalendarDates() {
 
   // Filter drinks & hangovers for the selected date
   const getDrinksForSelectedDate = () => {
-    const dateDrinks = userDrinks.filter((drink) =>
+    const dateDrinks = userDrinks.filter((drink) => {
       isSameDay(new Date(drink.dateConsumed), date)
+      // console.log(drink.dateConsumed)
+    }
     );
 
     return dateDrinks;
@@ -40,7 +42,7 @@ export default function CalendarDates() {
 
   const getHangoversForSelectedDate = () => {
     const dateHangovers = userHangovers.filter((hangover) => 
-      isSameDay(new Date(hangover.hangoverDate), date)
+      isSameDay(parseISO(hangover.hangoverDate), date)
     );
     return dateHangovers
  
@@ -69,30 +71,18 @@ export default function CalendarDates() {
     .map((hangover) => format(new Date(hangover.hangoverDate), 'yyyy-MM-dd'));
 
     const formattedDate = format(date, 'yyyy-MM-dd');
-    console.log(wildHangoverDates)
+    // console.log(wildHangoverDates)
 
-    if (wildHangoverDates.includes(formattedDate)) {
-      return 'wild-highlight';
-
-    } else if (highHangoverDates.includes(formattedDate)) {
-      return 'high-highlight';
-
-    } else if (midHangoverDates.includes(formattedDate)) {
-      return 'mid-highlight';
-
-    } else if (goodHangoverDates.includes(formattedDate)) {
-      return 'good-highlight';
-
-    } 
-
+    if (wildHangoverDates.includes(formattedDate)) return 'wild-highlight'
+    else if (highHangoverDates.includes(formattedDate)) return 'high-highlight';else if (midHangoverDates.includes(formattedDate)) return 'mid-highlight';
+    else if (goodHangoverDates.includes(formattedDate)) return 'good-highlight';
     return '';
   };
   
 
-
   return (
     <div className="CalendarDates">
-      <h2>Check out all your previous hangovers</h2>
+  
       <div className="calendar-container">
         <Calendar onChange={handleDateChange}
         value={date}
@@ -116,8 +106,8 @@ export default function CalendarDates() {
           trailWidth={2.5}
           strokeColor={setHangoverColor(hangover.hangoverScore)} />
 
-          <h4 key={index}>{hangover.hangoverScore}</h4>
-          <h4>Your wrote:</h4>
+          <h3 key={index}>{hangover.hangoverScore} / 10</h3>
+          <h4>You wrote:</h4>
           <div className="hangover-comments">
           <p>{hangover.hangoverComments}</p>
 
@@ -132,7 +122,7 @@ export default function CalendarDates() {
       <div className="drink-list">
         {/* <h4>On {format(date, 'EEEE dd MMM')} you drunk...</h4> */}
 
-        {getDrinksForSelectedDate().length > 0 ? (
+        {getHangoversForSelectedDate().length > 0 ? (
           <>
           
         <h4>The previous night you drunk...</h4>

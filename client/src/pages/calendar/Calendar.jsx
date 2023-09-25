@@ -7,6 +7,7 @@ function Calendar() {
   return (
     <div className='Calendar'>
       <Header></Header>
+      <h2>Check out all your <span id="underline">previous hangovers</span></h2>
       <CalendarDates ></CalendarDates>
       <Navbar/> 
     </div>

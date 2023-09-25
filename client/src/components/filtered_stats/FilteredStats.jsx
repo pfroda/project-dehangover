@@ -197,7 +197,7 @@ const filterDrinksByDate = (drinks, filter) => {
 <span>this {selectedFilter}</span>
 ) : (
 <span>in total</span>
-)} you've had <span id="totalHangovers">{totalHangovers}</span> hangovers</h2>
+)} you've had <span id="underline">{totalHangovers}</span> hangovers</h2>
 
       <DropdownDate onFilterChange={handleFilterChange} />
       

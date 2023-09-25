@@ -9,7 +9,7 @@ function Drinks() {
   return (
     <div>
       <Header></Header>
-      <h2>What are you drinking today?</h2>
+      <h2>What are you <span id="underline">drinking</span> today?</h2>
       <Searchbar ></Searchbar>
       <ListDrinks></ListDrinks>
       <HangoverForm></HangoverForm>

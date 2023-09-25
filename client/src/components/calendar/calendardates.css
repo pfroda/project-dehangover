@@ -5,30 +5,34 @@
 /* colors for hangovers */
 .wild-highlight {
   background-color: var(--red) !important;
+  border-radius: 10px;
 }
 
 .high-highlight {
   background-color: var(--yellow-strong-hover) !important;
+  border-radius: 10px;
 }
 
 .mid-highlight {
   background-color: var(--yellow-soft) !important;
+  border-radius: 10px;
 }
 
 .good-highlight {
   background-color: var(--green) !important;
+  border-radius: 10px;
 }
 
 
 /* changing calendar default styles */
 .react-calendar {
-    width: 350px;
+    /* width: 350px; */
     max-width: 100%;
-    background: var(--yellow-strong);
+    background: transparent;
     border: none;
     border-radius: 10px;
-    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
+    padding-bottom: 20px;
   }
   .react-calendar--doubleView {
     width: 700px;
@@ -69,9 +73,7 @@
   .react-calendar__navigation button:enabled:focus {
     /* background-color: #000000; */
   }
-  /* .react-calendar__navigation button[disabled] {
-    background-color: #000000;
-  } */
+  
   .react-calendar__month-view__weekdays {
     text-align: center;
     /* text-transform: uppercase; */
@@ -114,33 +116,33 @@
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
-    background-color: #000000;
+    background-color: #c5c5c576;
   }
   .react-calendar__tile--now {
-    background: #c5c5c576;
+    /* background: #c5c5c576; */
   }
-  .react-calendar__tile--now:enabled:hover,
+  /* .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {
     background: #000000;
-  }
+  } */
   .react-calendar__tile--hasActive {
-    background: #76baff;
+    background: #c5c5c576;
   }
   .react-calendar__tile--hasActive:enabled:hover,
   .react-calendar__tile--hasActive:enabled:focus {
-    background: #007efc;
+    background: #c5c5c576;
   }
   .react-calendar__tile--active {
-    background: #006edc;
+    background: #c5c5c576;
     color: rgb(0, 0, 0);
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {
-    background: #1087ff;
+    background: #c5c5c576;
   }
-  .react-calendar--selectRange .react-calendar__tile--hover {
+  /* .react-calendar--selectRange .react-calendar__tile--hover {
     background-color: #000000;
-  }
+  } */
   
   /* .highlight-red {
     color: red;
@@ -148,7 +150,13 @@
 
   .hangover-comments {
     padding: 10px;
+    /* padding-bottom: 20px; */
     background-color: white;
     border: 1px solid grey;
     border-radius: 10px;
+    /* margin-bottom: 20px; */
   }
+
+  /* .drink-list {
+    padding-top: 10px;
+  } */

@@ -4,5 +4,3 @@ export function setHangoverColor(value) {
     if (value >= 2.5) return '#ffe9ad'
     return "#81b44c"
     }
-
-    

@@ -47,8 +47,8 @@
     text-decoration: underline;
   }
 
-  #totalHangovers {
-    text-decoration: underline;
+  #underline {
+    text-decoration: underline 3px var(--yellow-strong);
   }
 
   
@@ -69,6 +69,7 @@
   .hangover-circle-num h4 {
     font-size: 25px;
     font-weight: 400;
+    padding-top: 0px;
     padding-bottom: 2px;
   }
   
