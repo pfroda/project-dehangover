@@ -32,7 +32,7 @@ function HangoverRating({handleRatingChange }) {
         <div
           className="rating-bar" onMouseEnter={(event) => handleRatingClick(event)}
           onClick={(event) => handleRatingClick(event)}
-        >
+          >
           
           <div
             className="filler-bar"
@@ -41,7 +41,7 @@ function HangoverRating({handleRatingChange }) {
               backgroundColor: getColor(),
             }}
             
-          ></div>
+            ></div>
         </div>
       </div>
         

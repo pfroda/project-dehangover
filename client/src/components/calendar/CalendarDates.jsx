@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
 
-import { format, isSameDay, parseISO } from 'date-fns';
+import { format, isSameDay, parseISO, differenceInHours } from 'date-fns';
 import { Line } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
 
@@ -29,16 +29,29 @@ export default function CalendarDates() {
 
   // setHangoverDates(userHangovers.map(hangover => new Date(hangover.hangoverDate)));
 
-  // Filter drinks & hangovers for the selected date
-  const getDrinksForSelectedDate = () => {
-    const dateDrinks = userDrinks.filter((drink) => {
-      isSameDay(new Date(drink.dateConsumed), date)
-      // console.log(drink.dateConsumed)
-    }
-    );
+  const mostRecentHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
 
-    return dateDrinks;
+  // Filter drinks & hangovers for the selected date
+  // const getDrinksForSelectedDate = () => {
+  //   const dateDrinks = userDrinks.filter((drink) => {
+  //     isSameDay(new Date(drink.dateConsumed), date)
+  //     // console.log(drink.dateConsumed)
+  //   }
+  //   );
+
+  //   return dateDrinks;
+  // };
+  const getDrinksForSelectedDate = () => {
+    const drinksForLast24Hours = userDrinks.filter((drink) => {
+      const drinkDate = new Date(drink.dateConsumed);
+      const hoursDifference = differenceInHours(date, drinkDate);
+      return hoursDifference >= 0 && hoursDifference <= 24;
+    });
+
+    return drinksForLast24Hours;
   };
+
+
 
   const getHangoversForSelectedDate = () => {
     const dateHangovers = userHangovers.filter((hangover) => 
@@ -74,7 +87,8 @@ export default function CalendarDates() {
     // console.log(wildHangoverDates)
 
     if (wildHangoverDates.includes(formattedDate)) return 'wild-highlight'
-    else if (highHangoverDates.includes(formattedDate)) return 'high-highlight';else if (midHangoverDates.includes(formattedDate)) return 'mid-highlight';
+    else if (highHangoverDates.includes(formattedDate)) return 'high-highlight';
+    else if (midHangoverDates.includes(formattedDate)) return 'mid-highlight';
     else if (goodHangoverDates.includes(formattedDate)) return 'good-highlight';
     return '';
   };
@@ -142,7 +156,7 @@ export default function CalendarDates() {
           
           </>
         ) : (
-          <p>No hangovers that day :)</p>
+          <p>No hangovers here :)</p>
         )
         
       }
