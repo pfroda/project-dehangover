@@ -5,10 +5,11 @@
 }
 
 .highlight-text h4 {
-    padding-top: 0px;
+    padding: 0px;
+    margin-top: 0px;
 }
 
-.Welcome img {
+.Intro img {
     max-width: 300px;
     display: block;
     margin-left: auto;

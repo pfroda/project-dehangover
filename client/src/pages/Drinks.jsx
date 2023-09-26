@@ -8,7 +8,7 @@ import HangoverPrediction from '../components/hangoverprediction/HangoverPredict
 function Drinks() {
   return (
     <div>
-      <h2>What are you <span id="underline">drinking</span> today?</h2>
+      <h2>What are you <span id="underline">drinking</span> tonight?</h2>
       <Searchbar ></Searchbar>
       <ListDrinks></ListDrinks>
       <HangoverPrediction></HangoverPrediction>

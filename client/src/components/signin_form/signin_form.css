@@ -3,21 +3,26 @@
     flex-direction: column;
 }
 
+.Signin_form h2 {
+    padding-bottom: 10px;
+}
+
 .signin-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-
 .signin-form button {
     width: 100%;
 }
 
-
 .Signin_form img {
     max-width: 560px;
+    width: 80%;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }

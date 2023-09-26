@@ -17,6 +17,9 @@ function FilteredStats() {
   const { userHangovers, getHangovers } = useHangover();
   const [selectedFilter, setSelectedFilter] = useState('week');
 
+  // test
+  const [maxType, setMaxType] = useState(null)
+
 
  // drinks stats
   const [userFilteredDrinks, setUserFilteredDrinks] = useState([]);
@@ -30,7 +33,6 @@ function FilteredStats() {
   const [userFilteredHangovers, setUserFilteredHangovers] = useState([]);
   const [totalHangovers, setTotalHangovers] = useState(0)
 
-
   useEffect(() => {
 
     getDrinks(user.id);
@@ -43,16 +45,16 @@ function FilteredStats() {
         if (userDrinks.length === 0) {
           await getDrinks(user.id);
         }
-        if (userHangovers.length === 0) {
-          await getHangovers(user.id);
-        }
+        // if (userHangovers.length === 0) {
+        //   await getHangovers(user.id);
+        // }
   
         // DRINKS //
 
         // Filter the drinks based on the selected filter
         const filteredDrinks = filterDrinksByDate(userDrinks, selectedFilter);
         setUserFilteredDrinks(filteredDrinks);
-
+  
         // Calculate total and most consumed type on selected filter
 
         const filteredDrinksByType = {};
@@ -62,25 +64,23 @@ function FilteredStats() {
             totalDrinks += drink.numConsumptions;
 
             if(filteredDrinksByType[drink.type.name]) {
-                filteredDrinksByType[drink.type.name]++
+                filteredDrinksByType[drink.type.name] += drink.numConsumptions
             } else {
-                filteredDrinksByType[drink.type.name] = 1
+                filteredDrinksByType[drink.type.name] = drink.numConsumptions
             }
         })
 
-        let MaxConsumedType = null;
         let MaxConsumedCount = 0;
 
         for (let type in filteredDrinksByType) {
-            if (filteredDrinksByType[type] > MaxConsumedCount) {
-                MaxConsumedCount = filteredDrinksByType[type];
-                MaxConsumedType = type;
-            }
-            setMostConsumedType(MaxConsumedType);
-            setTotalDrinks(totalDrinks);
-        }
+          if (filteredDrinksByType[type] > MaxConsumedCount) {
+              MaxConsumedCount = filteredDrinksByType[type];
+              setMaxType(type)
+          }
+          setTotalDrinks(totalDrinks);
+      }
 
-         // Convert the object into array of objects
+         // Convert the object into array of objects to get type images
         const mostConsumedTypesArray = Object.entries(filteredDrinksByType).map(
         ([type, count]) => ({ type, count })
         );
@@ -157,7 +157,7 @@ function FilteredStats() {
             </div>
 
             <div className='numeric-stat-box numeric-stats-type'>
-            <p className='numeric-stats-num'>{mostConsumedType}</p>
+            <p className='numeric-stats-num'>{maxType}</p>
             <p>Most Consumed</p>
             </div>
 

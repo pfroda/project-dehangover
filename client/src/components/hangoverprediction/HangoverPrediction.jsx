@@ -29,7 +29,7 @@ function HangoverPrediction () {
   useEffect(() => {
     // Calculate hangover score when userDrinks or userHangovers change
     calculatePrediction();
-  }, [userDrinks, userHangovers]);
+  }, []); //deleted userDrinks, userHangovers
 
     async function calculatePrediction() {
       try {

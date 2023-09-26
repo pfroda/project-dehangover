@@ -106,12 +106,18 @@ h2 {
 h3 {
     padding-top: 10px;
     padding-bottom: 10px;
+    line-height: 1.4;
 }
 
 h4 {
     font-weight: 600;
     padding-bottom: 20px;
     padding-top: 20px;
+}
+
+h6 {
+  padding-top: 0px;
+  padding-bottom: 20px;
 }
 
 #underline {

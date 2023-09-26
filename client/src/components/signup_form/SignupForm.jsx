@@ -19,7 +19,7 @@ function SignupForm() {
 
     await signup(userData);
     event.target.reset();
-    navigate('/drinks')
+    navigate('/welcome')
     
   }
 

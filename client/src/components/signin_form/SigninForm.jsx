@@ -23,7 +23,8 @@ function SigninForm() {
 
   return (
     <div className='Signin_form'>
-      <h2>Sign In</h2>
+      <h2>It's alright if you don't remember</h2>
+      <h6>DeHangover does</h6>
       <img src={cover} alt="" />
       <form className="signin-form" onSubmit={handleSignin}>
         <input type="text" name='email' required={true} placeholder='Email'/>

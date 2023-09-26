@@ -1,6 +1,5 @@
 // import React, { useState } from 'react';
 // import { getTypes } from '../../services/apiType';
-// import './searchdrink.css'
 
 // function SearchDrink({ onTypeSelect }) {
 //   const [searchQuery, setSearchQuery] = useState('');
