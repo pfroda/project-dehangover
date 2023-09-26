@@ -10,9 +10,9 @@ function HangoverPrediction () {
   const { userDrinks, getDrinks } = useDrink();
   const { userHangovers, getHangovers } = useHangover();
 
-  const [tonightAlcohol, setTonightAlcohol] = useState(0);
-  const [tonightTypes, setTonightTypes] = useState(0);
-  const [totalAlcohol, setTotalAlcohol] = useState(0);
+  // const [tonightAlcohol, setTonightAlcohol] = useState(0);
+  // const [tonightTypes, setTonightTypes] = useState(0);
+  // const [totalAlcohol, setTotalAlcohol] = useState(0);
 
   const [addedDrinks, setAddedDrinks] = useState([])
 
@@ -64,7 +64,7 @@ function HangoverPrediction () {
         const estimatedHangoverScore = ((tonightAlcoholConsumption*(totalHangoverScores/userHangovers.length))+(tonightDrinkTypes*0.1) / ((totalAlcoholConsumption)/userHangovers.length));
         
         setEstimatedHangoverScore(Math.min(Math.max(estimatedHangoverScore.toFixed(2), 0), 10));
-        console.log('hangover score: ', estimatedHangoverScore);
+        // console.log('hangover score: ', estimatedHangoverScore);
         
       } catch (err) {
         console.log(err)

@@ -103,7 +103,6 @@ function FilteredStats() {
           return accumulator + hangover.hangoverScore}, 0) / totalFilteredHangovers;
   
           setAvgScoreFilteredHangovers(avgScoreFilteredHangovers)
-
       
       } catch (error) {
         console.error('Error calculating user stats:', error);
@@ -115,7 +114,6 @@ function FilteredStats() {
   }, [selectedFilter, user.id]);
 
   // , userDrinks, userHangovers, getDrinks, getHangovers
-
 
 
   // Get filter change from child - dropdown.date
@@ -137,7 +135,8 @@ function FilteredStats() {
       
       <div className="hangover-stats">
       <div className="hangover-circle-num">
-      <h4>{avgScoreFilteredHangovers.toFixed(2)}</h4>
+      <h4>{(avgScoreFilteredHangovers > 0) ? avgScoreFilteredHangovers.toFixed(2) : 0}</h4>
+
       <p>Avg. Hangover</p>
       </div>
 
@@ -163,7 +162,7 @@ function FilteredStats() {
             </div>
 
             <div className='numeric-stat-box numeric-stats-average'>
-            <p className='numeric-stats-num'>{(totalDrinks/totalHangovers).toFixed(0)}</p>
+            <p className='numeric-stats-num'>{(totalDrinks/(totalHangovers || 1)).toFixed(0)}</p>
             <p>Avg. Drinks/Nights out</p>
             </div>
         </div>

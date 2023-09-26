@@ -23,6 +23,17 @@
   border-radius: 10px;
 }
 
+.hangover-comments {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 10px;
+}
+
+#no-hangovers {
+  padding-top: 20px;
+}
 
 /* importing and changing calendar default styles */
 .react-calendar {
@@ -130,9 +141,3 @@
     background: #c5c5c576;
   }
 
-  .hangover-comments {
-    padding: 10px;
-    background-color: white;
-    border: 1px solid grey;
-    border-radius: 10px;
-  }

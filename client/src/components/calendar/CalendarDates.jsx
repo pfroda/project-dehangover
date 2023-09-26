@@ -20,8 +20,6 @@ export default function CalendarDates() {
   }, []);
 
 
-  // const mostRecentHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
-
   // get drinks & hangovers for selected date: could go to utils
   const getDrinksForSelectedDate = () => {
     const drinksForLast24Hours = userDrinks.filter((drink) => {
@@ -118,7 +116,7 @@ export default function CalendarDates() {
         </ul>
           </>
         ) : (
-          <p>No hangovers here :)</p>
+          <p id='no-hangovers'>No hangovers here :)</p>
         )  
       }
       </div>
