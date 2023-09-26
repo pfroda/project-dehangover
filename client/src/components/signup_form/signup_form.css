@@ -3,6 +3,10 @@
     flex-direction: column;
 }
 
+.Signup_form h2 {
+    padding-bottom: 10px;
+}
+
 .signup-form {
     display: flex;
     flex-direction: column;

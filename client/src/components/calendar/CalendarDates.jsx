@@ -100,7 +100,7 @@ export default function CalendarDates() {
       <div className="drink-list">
         {getHangoversForSelectedDate().length > 0 ? (
           <>
-        <h4>The previous night you drunk...</h4>
+        <h4>The previous night you drank...</h4>
         <ul>
           {getDrinksForSelectedDate().map((drink, index) => (
                   <li key={drink._id} className='listed-drinks'>

@@ -20,8 +20,7 @@ function FilteredStats() {
   // test
   const [maxType, setMaxType] = useState(null)
 
-
- // drinks stats
+  // drinks stats
   const [userFilteredDrinks, setUserFilteredDrinks] = useState([]);
   const [totalDrinks, setTotalDrinks] = useState(0);
   const [mostConsumedType, setMostConsumedType] = useState(null);
@@ -34,21 +33,33 @@ function FilteredStats() {
   const [totalHangovers, setTotalHangovers] = useState(0)
 
   useEffect(() => {
-
-    getDrinks(user.id);
-    getHangovers(user.id);
-    
-
-    async function calculateUserStats() { //filterUserDrinks
+    async function fetchData() {
       try {
-
         if (userDrinks.length === 0) {
           await getDrinks(user.id);
         }
-        // if (userHangovers.length === 0) {
-        //   await getHangovers(user.id);
-        // }
-  
+        if (userHangovers.length === 0) {
+          await getHangovers(user.id);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, [user.id, getDrinks, getHangovers]);
+
+  useEffect(() => {
+    async function calculateUserStats() {
+      try {
+        // clear previous data
+        setUserFilteredDrinks([]);
+        setUserFilteredHangovers([]);
+        setTotalDrinks(0);
+        setTotalHangovers(0);
+        setMaxType(null)
+
+
         // DRINKS //
 
         // Filter the drinks based on the selected filter
@@ -80,7 +91,7 @@ function FilteredStats() {
           setTotalDrinks(totalDrinks);
       }
 
-         // Convert the object into array of objects to get type images
+         // Convert the object into an array of objects to get type images
         const mostConsumedTypesArray = Object.entries(filteredDrinksByType).map(
         ([type, count]) => ({ type, count })
         );
@@ -91,19 +102,19 @@ function FilteredStats() {
 
         // HANGOVERS
     
-          // Filter hangovers based on selected date filter
+          // Filter hangovers based on the selected date filter
         const filteredHangovers = filterHangoversByDate(userHangovers, selectedFilter);
         setUserFilteredHangovers(filteredHangovers);
 
         const totalFilteredHangovers = filteredHangovers.length;
         setTotalHangovers(totalFilteredHangovers)
 
-
+          console.log(totalFilteredHangovers)
         const avgScoreFilteredHangovers = filteredHangovers.reduce((accumulator, hangover) => {
           return accumulator + hangover.hangoverScore}, 0) / totalFilteredHangovers;
   
           setAvgScoreFilteredHangovers(avgScoreFilteredHangovers)
-      
+          // console.log(avgScoreFilteredHangovers)
       } catch (error) {
         console.error('Error calculating user stats:', error);
       }
@@ -111,14 +122,12 @@ function FilteredStats() {
 
     calculateUserStats();
    
-  }, [selectedFilter, user.id]);
-
-  // , userDrinks, userHangovers, getDrinks, getHangovers
-
+  }, [selectedFilter, user.id, userDrinks, userHangovers]);
 
   // Get filter change from child - dropdown.date
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
+    console.log('Selected Filter:', filter);
   };
 
 
@@ -157,7 +166,7 @@ function FilteredStats() {
             </div>
 
             <div className='numeric-stat-box numeric-stats-type'>
-            <p className='numeric-stats-num'>{maxType}</p>
+            <p className='numeric-stats-num'>{maxType || '-'}</p>
             <p>Most Consumed</p>
             </div>
 

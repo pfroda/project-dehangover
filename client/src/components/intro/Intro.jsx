@@ -17,7 +17,7 @@ function Intro() {
         <div className='welcome-highlight'>
             <div className="highlight-text">
                 <h4>Start your night</h4>
-                <h3>Ready for some good old-fashioned drunk fun? Start your journey now. <span><Link to='/drinks'>Have a drink!</Link></span></h3>
+                <h3>Ready for some good old-fashioned drunk fun? Begin your journey now. <span><Link to='/drinks'>Have a drink!</Link></span></h3>
             </div>
         </div>
     </div>

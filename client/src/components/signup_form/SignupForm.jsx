@@ -25,7 +25,8 @@ function SignupForm() {
 
   return (
     <div className='Signup_form'>
-      <h2>Create your account</h2>
+      <h2>What the hell happened last night!?</h2>
+      <h6>Create your account and find out.</h6>
       <img src={profile} alt="" />
       <form className='signup-form' onSubmit={handleSignup}>
 
