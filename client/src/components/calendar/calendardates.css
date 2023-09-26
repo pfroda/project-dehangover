@@ -2,7 +2,7 @@
     color: black
 }
 
-/* colors for hangovers */
+/* tile colors for type of hangovers */
 .wild-highlight {
   background-color: var(--red) !important;
   border-radius: 10px;
@@ -24,10 +24,10 @@
 }
 
 
-/* changing calendar default styles */
+/* importing and changing calendar default styles */
 .react-calendar {
-    /* width: 350px; */
-    max-width: 100%;
+    /* max-width: 500px; */
+    /* max-width: 100%; */
     background: transparent;
     border: none;
     border-radius: 10px;
@@ -35,7 +35,7 @@
     padding-bottom: 20px;
   }
   .react-calendar--doubleView {
-    width: 700px;
+    /* width: 700px; */
   }
   .react-calendar--doubleView .react-calendar__viewContainer {
     display: flex;
@@ -69,14 +69,9 @@
     min-width: 44px;
     background: none;
   }
-  .react-calendar__navigation button:enabled:hover,
-  .react-calendar__navigation button:enabled:focus {
-    /* background-color: #000000; */
-  }
-  
   .react-calendar__month-view__weekdays {
     text-align: center;
-    /* text-transform: uppercase; */
+    text-decoration-line: none;
     font-weight: bold;
     font-size: 0.75em;
     color: rgb(0, 0, 0);
@@ -118,13 +113,7 @@
   .react-calendar__tile:enabled:focus {
     background-color: #c5c5c576;
   }
-  .react-calendar__tile--now {
-    /* background: #c5c5c576; */
-  }
-  /* .react-calendar__tile--now:enabled:hover,
-  .react-calendar__tile--now:enabled:focus {
-    background: #000000;
-  } */
+
   .react-calendar__tile--hasActive {
     background: #c5c5c576;
   }
@@ -140,23 +129,10 @@
   .react-calendar__tile--active:enabled:focus {
     background: #c5c5c576;
   }
-  /* .react-calendar--selectRange .react-calendar__tile--hover {
-    background-color: #000000;
-  } */
-  
-  /* .highlight-red {
-    color: red;
-  } */
 
   .hangover-comments {
     padding: 10px;
-    /* padding-bottom: 20px; */
     background-color: white;
     border: 1px solid grey;
     border-radius: 10px;
-    /* margin-bottom: 20px; */
   }
-
-  /* .drink-list {
-    padding-top: 10px;
-  } */

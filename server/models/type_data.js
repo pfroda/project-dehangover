@@ -46,12 +46,6 @@ const drinkTypes = [
     imageUrl: 'champagne.png',
   },
   {
-    name: 'Cider',
-    category: 'wines',
-    alcohol: 0.045,
-    imageUrl: 'cider.png',
-  },
-  {
     name: 'Martini',
     category: 'wines',
     alcohol: 0.15,
@@ -78,7 +72,7 @@ const drinkTypes = [
 
   // destillates
   {
-    name: 'Whisky On The Rock',
+    name: 'Whisky',
     category: 'baseLiquors',
     alcohol: 0.41,
     imageUrl: 'whisky.png',
@@ -88,12 +82,6 @@ const drinkTypes = [
     category: 'baseLiquors',
     alcohol: 0.40,
     imageUrl: 'rum.png',
-  },
-  {
-    name: 'Cognac',
-    category: 'baseLiquors',
-    alcohol: 0.40,
-    imageUrl: 'cognac.png',
   },
   {
     name: 'Vodka',
@@ -120,12 +108,6 @@ const drinkTypes = [
     category: 'cocktails',
     alcohol: 0.11,
     imageUrl: 'moscow.png',
-  },
-  {
-    name: 'Rum & Cola',
-    category: 'cocktails',
-    alcohol: 0.14,
-    imageUrl: 'rumcola.png',
   },
   {
     name: 'Bloody Mary',

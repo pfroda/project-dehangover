@@ -78,7 +78,6 @@ export default function CalendarDates() {
 
   return (
     <div className="CalendarDates">
-  
       <div className="calendar-container">
         <Calendar onChange={handleDateChange}
         value={date}
@@ -87,28 +86,22 @@ export default function CalendarDates() {
         />
       </div>
 
-  
       <div className="hangover-details">
 
-
         {getHangoversForSelectedDate().map((hangover, index) => (
-          
           <>
           <h4>Your hangover score:</h4>
           <Line
           percent={hangover.hangoverScore*10} strokeWidth={2.5}
           trailWidth={2.5}
           strokeColor={setHangoverColor(hangover.hangoverScore)} />
-
           <h3 key={index}>{hangover.hangoverScore} / 10</h3>
           <h4>You wrote:</h4>
           <div className="hangover-comments">
           <p>{hangover.hangoverComments}</p>
           </div>
           </>
-
         ))}
-
 </div>
 
       <div className="drink-list">
@@ -131,8 +124,7 @@ export default function CalendarDates() {
           </>
         ) : (
           <p>No hangovers here :)</p>
-        )
-        
+        )  
       }
       </div>
     </div>

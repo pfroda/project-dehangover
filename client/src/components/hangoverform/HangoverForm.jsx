@@ -52,7 +52,7 @@ function HangoverForm() {
     return (
         <div className='HangoverForm'>
             {!submitted ? (
-                <p onClick={toggleFormVisibility}>Nights over? <span id="underline">Rate your hangover</span></p>
+                <p onClick={toggleFormVisibility}>Night's over? <span id="underline">Rate your hangover</span></p>
             ) : (
                 <h3>Hangover rated! Now you can start another drinking night</h3> 
             )}
@@ -61,7 +61,7 @@ function HangoverForm() {
                 <form onSubmit={handleSubmit} className='hangover-form'>
                     <div className="form-group">
                         <HangoverRating handleRatingChange={handleRatingChange} name="score" />
-                        <input type="text" id="comments-input" name="comments" placeholder="Add your comments here"></input>
+                        <textarea type="text" id="comments-input" name="comments" placeholder="Add your comments here"></textarea>
                         <button type="submit">Rate hangover</button>
                     </div>
                 </form>

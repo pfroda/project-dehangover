@@ -4,26 +4,39 @@
     display: flex;
     flex-direction: column;
   }
+
+.HangoverForm p {
+  cursor: pointer;
+}
   
-  .hangover-form {
-    padding-top: 20px;
-    /* max-width: 400px; */
-  }
+.hangover-form {
+  padding-top: 20px;
+}
   
-  .form-group {
-   display: flex;
-   flex-direction: column;
-   gap: 20px
-  }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
   
-  label {
-    font-weight: bold;
-  }
-  
+
 #comments-input {
     min-height: 100px;
+    vertical-align: top;
+    resize: vertical;
+    overflow-y: auto;
 }
 
 .padding-top {
   padding-top: 20px
+}
+
+textarea {
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+textarea:focus {
+  border-color: var(--yellow-strong);
 }

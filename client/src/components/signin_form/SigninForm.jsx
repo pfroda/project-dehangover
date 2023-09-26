@@ -25,7 +25,7 @@ function SigninForm() {
     <div className='Signin_form'>
       <h2>Sign In</h2>
       <img src={cover} alt="" />
-      <form className="signup-form" onSubmit={handleSignin}>
+      <form className="signin-form" onSubmit={handleSignin}>
         <input type="text" name='email' required={true} placeholder='Email'/>
         <input type="password" name='password' required={true} placeholder='Password'/>
         <button type="submit" >Sign in</button>

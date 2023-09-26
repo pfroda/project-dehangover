@@ -9,14 +9,12 @@ import { filterDrinksByDate, filterHangoversByDate } from '../../utils/utils';
 import 'react-circular-progressbar/dist/styles.css';
 import './filteredstats.css';
 
-
 // DIRTY
 
 function FilteredStats() {
   const { user } = useAuth();
   const { userDrinks, getDrinks } = useDrink();
   const { userHangovers, getHangovers } = useHangover();
-
   const [selectedFilter, setSelectedFilter] = useState('week');
 
 
@@ -53,7 +51,6 @@ function FilteredStats() {
 
         // Filter the drinks based on the selected filter
         const filteredDrinks = filterDrinksByDate(userDrinks, selectedFilter);
-  
         setUserFilteredDrinks(filteredDrinks);
 
         // Calculate total and most consumed type on selected filter
@@ -99,7 +96,6 @@ function FilteredStats() {
         setUserFilteredHangovers(filteredHangovers);
 
         const totalFilteredHangovers = filteredHangovers.length;
-
         setTotalHangovers(totalFilteredHangovers)
 
 
