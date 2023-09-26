@@ -1,14 +1,13 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AuthProvider from './context/AuthContext';
 import DrinkProvider from './context/DrinksContext';
 import HangoverProvider from './context/HangoversContext';
-import Signup from './pages/signup/Signup';
-import Signin from './pages/signin/Signin';
-import NoData from './pages/nodata/NoData';
-import Calendar from './pages/calendar/Calendar';
-import Drinks from './pages/drinks/Drinks';
-import Stats from './pages/stats/Stats';
+import Signup from './pages/Signup';
+import Signin from './pages/Signin';
+import NoData from './pages/NoData';
+import Calendar from './pages/Calendar';
+import Drinks from './pages/Drinks';
+import Stats from './pages/Stats';
 import Header from './components/header/Header';
 import './App.css';
 

@@ -14,25 +14,21 @@ export default function CalendarDates() {
   const { userHangovers, getHangovers } = useHangover();
   const [date, setDate] = useState(new Date());
 
-  const [hangoverScore, setHangoverScore] = useState(0)
-
   useEffect(() => {
     getDrinks(user.id);
     getHangovers(user.id);
- 
-    
   }, []);
 
 
-  const mostRecentHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
+  // const mostRecentHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
 
+  // get drinks & hangovers for selected date: could go to utils
   const getDrinksForSelectedDate = () => {
     const drinksForLast24Hours = userDrinks.filter((drink) => {
       const drinkDate = new Date(drink.dateConsumed);
       const hoursDifference = differenceInHours(date, drinkDate);
       return hoursDifference >= 0 && hoursDifference <= 24;
     });
-
     return drinksForLast24Hours;
   };
 
@@ -41,7 +37,6 @@ export default function CalendarDates() {
       isSameDay(parseISO(hangover.hangoverDate), date)
     );
     return dateHangovers
- 
   }
 
   const handleDateChange = (newDate) => {

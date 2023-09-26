@@ -1,6 +1,5 @@
 const Type = require('../models/Type');
 
-
 async function getTypes (req, res) {
   try {
     const Types = await Type.find();
@@ -8,20 +7,22 @@ async function getTypes (req, res) {
 
   } catch (err) {
       console.log(err);
-      res.status(500).json({error: 'Internal server error'})
+      res.status(500).json({error: 'Error fetching drink types'})
   }
 }
 
 async function getSelectedType (req, res) {
-  const { q } = req.query; // Get the 'q' query parameter for the search query
+  // Get the 'q' query parameter for the search query
+  const { q } = req.query; 
 
   try {
-    const types = await Type.find({ name: { $regex: q, $options: 'i' } }); // Perform a case-insensitive search
+    // Perform a case-insensitive search
+    const types = await Type.find({ name: { $regex: q, $options: 'i' } }); 
     res.json(types);
     
   } catch (error) {
-    res.status(500).json({ error: 'Error fetching drink types' });
+    res.status(500).json({ error: 'Error fetching selected drink type' });
   }
-};
+}
 
 module.exports = {getTypes, getSelectedType}

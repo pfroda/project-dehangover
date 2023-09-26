@@ -1,12 +1,22 @@
-/* hangoverform.css */
-
 .HangoverForm {
     display: flex;
     flex-direction: column;
   }
 
-.HangoverForm p {
+#rating-box {
   cursor: pointer;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: var(--yellow-soft);
+  border-radius: 10px;
+}
+
+#rating-box:hover {
+  background-color: #fce39c;
+}
+
+.HangoverForm h3 {
+  padding-top: 20px;
 }
   
 .hangover-form {
@@ -18,10 +28,9 @@
   flex-direction: column;
   gap: 20px
 }
-  
 
 #comments-input {
-    min-height: 100px;
+    min-height: 80px;
     vertical-align: top;
     resize: vertical;
     overflow-y: auto;

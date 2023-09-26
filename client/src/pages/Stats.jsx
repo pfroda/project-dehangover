@@ -1,6 +1,6 @@
 import React from 'react'
-import FilteredStats from '../../components/filtered_stats/FilteredStats';
-import Navbar from '../../components/navbar/Navbar';
+import FilteredStats from '../components/filtered_stats/FilteredStats';
+import Navbar from '../components/navbar/Navbar';
 
 function Stats() {
   return (

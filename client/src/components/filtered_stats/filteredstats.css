@@ -6,7 +6,6 @@
 .numeric-stat-box {
     flex: 1;
     padding: 10px;
-    /* border: 1px solid #ccc; */
     text-align: center;
   }
 
@@ -22,8 +21,6 @@
   }
   
   .consumed-type {
-    /* border: 1px solid #ccc; */
-    /* padding: 20px; */
     padding-top: 20px;
     text-align: center;
   }
@@ -37,20 +34,10 @@
     transform: translateX(5px) rotate(10deg) translateY(2px);
   }
   
-  /* .consumed-type img {
-    max-width: 100px;
-    max-height: 100px;
-  }
-   */
   .selected-type-data h5 {
     color: var(--yellow-strong);
     text-decoration: underline;
   }
-
-  #underline {
-    text-decoration: underline 3px var(--yellow-strong);
-  }
-
   
   .hangover-stats {
     display: flex;
@@ -73,13 +60,11 @@
     padding-bottom: 2px;
   }
   
-  
   .hangover-circle {
     display: flex;
-    width: 180px;
+    max-width: 180px;
     justify-content: center;
     align-items: center;
-   
   }
 
   .selected-type-data {

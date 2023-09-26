@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
 import { useHangover } from '../../context/HangoversContext';
-import { useDrink } from '../../context/DrinksContext'; 
 import { useAuth } from '../../context/AuthContext';
 import HangoverRating from '../hangoverrating/HangoverRating';
 
 import './hangoverform.css';
 
 function HangoverForm() {
-    const { userHangovers, getHangovers, postHangovers } = useHangover();
-    const { userDrinks, getDrinks } = useDrink();
     const { user } = useAuth();
+    const { postHangovers } = useHangover();
     const [rating, setRating] = useState(0);
     const [formVisible, setFormVisible] = useState(false);
     const [submitted, setSubmitted] = useState(false);
-
-//   const previousHangoverDate = userHangovers.length > 0 ? userHangovers[userHangovers.length - 1].hangoverDate : null;
-
-//   const filteredUserDrinks = previousHangoverDate
-//   ? userDrinks.filter((drink) => new Date(drink.dateConsumed) > new Date(previousHangoverDate))
-//   : [];
     
-
     const handleRatingChange = (newRating) => {
         setRating(newRating);
     };
@@ -40,7 +31,6 @@ function HangoverForm() {
         }
 
         try {
-            console.log(hangoverData)
             await postHangovers(hangoverData);
             setSubmitted(true)
 
@@ -52,9 +42,9 @@ function HangoverForm() {
     return (
         <div className='HangoverForm'>
             {!submitted ? (
-                <p onClick={toggleFormVisibility}>Night's over? <span id="underline">Rate your hangover</span></p>
+                <p id='rating-box' onClick={toggleFormVisibility}>Night's over? <span id="underline-black">Rate your hangover ></span></p>
             ) : (
-                <h3>Hangover rated! Now you can start another drinking night</h3> 
+                <h3>Hangover rated! You can start another drinking night.</h3> 
             )}
 
             {formVisible && !submitted && (

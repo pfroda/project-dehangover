@@ -12,7 +12,6 @@ function HangoverRating({handleRatingChange }) {
       const calculatedRating = ((percent / 100) * 10).toFixed(1);
       setRating(calculatedRating)
       handleRatingChange(calculatedRating);
-      console.log(calculatedRating);
       setBarWidth(percent);
     };
 
@@ -25,14 +24,12 @@ function HangoverRating({handleRatingChange }) {
     };
   
     return (
-        <>
-
+      <>
       <div className="rating-input">
-        <p>Rating: {rating} / 10</p>
+      <h4>Your rating:</h4>
         <div
           className="rating-bar" onMouseEnter={(event) => handleRatingClick(event)}
-          onClick={(event) => handleRatingClick(event)}
-          >
+          onClick={(event) => handleRatingClick(event)}>
           
           <div
             className="filler-bar"
@@ -40,11 +37,11 @@ function HangoverRating({handleRatingChange }) {
               width: `${barWidth}%`,
               backgroundColor: getColor(),
             }}
-            
-            ></div>
+          ></div>
         </div>
+        <h3>{rating} / 10</h3>
       </div>
-        </>
+      </>
 
     );
   };

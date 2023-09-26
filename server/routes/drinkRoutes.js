@@ -3,7 +3,6 @@ const router = express.Router();
 
 const drinkController = require('../controllers/drinkController');
 
-
 // Add, delete, update and get user drinks
 router.post('/drinks', drinkController.postDrink);
 router.delete('/drinks/:id', drinkController.deleteDrink);

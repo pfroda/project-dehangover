@@ -1,6 +1,6 @@
 import React from 'react';
-import Welcome from '../../components/welcome/Welcome';
-import Navbar from '../../components/navbar/Navbar';
+import Welcome from '../components/welcome/Welcome';
+import Navbar from '../components/navbar/Navbar';
 
 function NoData() {
 

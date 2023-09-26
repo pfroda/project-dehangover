@@ -47,7 +47,7 @@ async function getUserDrinks (req, res) {
 
   } catch (err) {
     console.log(err);
-    res.status(500).json({error: 'Error getting drink'})
+    res.status(500).json({error: 'Error getting user drinks'})
   }
 }
 

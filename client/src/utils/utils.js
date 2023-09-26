@@ -10,33 +10,35 @@ export function setHangoverColor(value) {
  export function filterDrinksByDate (drinks, filter) {
     if (filter === 'all') {
       return drinks;
-    } else {
-        const currentDate = new Date();
-        currentDate.setHours(0, 0, 0, 0);
+
+  } else {
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
         
-        if (filter === 'week') {
-          const oneWeekAgo = new Date(currentDate);
-          oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-          return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneWeekAgo);
+      if (filter === 'week') {
+        const oneWeekAgo = new Date(currentDate);
+        oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneWeekAgo);
 
-        } else if (filter === 'month') {
-          const oneMonthAgo = new Date(currentDate);
-          oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
-          return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneMonthAgo);
+      } else if (filter === 'month') {
+        const oneMonthAgo = new Date(currentDate);
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneMonthAgo);
 
-        } else if (filter === 'year') {
-          const oneYearAgo = new Date(currentDate);
-          oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-          return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneYearAgo);
+      } else if (filter === 'year') {
+        const oneYearAgo = new Date(currentDate);
+        oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+        return drinks.filter((drink) => new Date(drink.dateConsumed) >= oneYearAgo);
         }
     }
 }
 
 // Filter hangovers by date on Stats
 export function filterHangoversByDate (userHangovers, filter) {
-     if (filter === 'all') {
-      return userHangovers;
-    } else {
+    if (filter === 'all') {
+    return userHangovers;
+      
+  } else {
       const currentDate = new Date();
       currentDate.setHours(0, 0, 0, 0);
   

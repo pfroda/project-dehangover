@@ -114,6 +114,14 @@ h4 {
     padding-top: 20px;
 }
 
+#underline {
+  text-decoration: underline 3px var(--yellow-strong);
+}
+
+#underline-black {
+  /* text-decoration: underline 2px black; */
+}
+
 /* forms */
 .error {
     font-size: 12px;

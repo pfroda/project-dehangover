@@ -1,12 +1,10 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-// const jwt = require('jsonwebtoken');
 
 async function createUser (req, res) {
     const {firstName, email, password} = req.body
   try {
     const passwordHash = await bcrypt.hash(password, 10);
-    console.log('Creating a new user...')
     const newUser = await User.create({
         firstName,
         email,
@@ -20,7 +18,7 @@ async function createUser (req, res) {
     })
   } catch (error) {
     console.log(error);
-    res.status(500).json({error: 'Internal server error'})
+    res.status(500).json({error: 'Error creating user'})
   }
 }
 
@@ -44,9 +42,9 @@ async function loginUser (req, res) {
     
   } catch (error) {
     console.log(error);
-    res.status(500).json({error: 'Internal server error'})
+    res.status(500).json({error: 'Error login user'})
   }
-};
+}
 
 
 module.exports = {createUser, loginUser}

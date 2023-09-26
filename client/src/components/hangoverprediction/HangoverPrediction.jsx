@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useDrink } from '../../context/DrinksContext'; 
 import { useHangover } from '../../context/HangoversContext';
-
 import { Line } from 'rc-progress';
 import { setHangoverColor } from '../../utils/utils';
-
 
 function HangoverPrediction () {
   const { user } = useAuth();
@@ -18,7 +16,6 @@ function HangoverPrediction () {
 
   const [addedDrinks, setAddedDrinks] = useState([])
 
-  // const [totalHangoverScores, setTotalHangoverScores] = useState(0);
 
   const [estimatedHangoverScore, setEstimatedHangoverScore] = useState(0);
 
@@ -36,13 +33,10 @@ function HangoverPrediction () {
 
     async function calculatePrediction() {
       try {
-
-
         if (userHangovers.length === 0) {
           setEstimatedHangoverScore(0);
           return
         }
-        
         
         const totalHangoverScores = userHangovers.reduce((accumulator, hangover) => {
           return accumulator + hangover.hangoverScore
@@ -55,14 +49,6 @@ function HangoverPrediction () {
         setAddedDrinks(drinksAfterPreviousHangover)
 
         const drinksBeforePreviousHangover = userDrinks.filter((drink) => new Date(drink.dateConsumed) < new Date(previousHangoverDate));
-
-
-    // console.log('Total Hangover Scores:', totalHangoverScores);
-    // console.log('Previous Hangover Date:', previousHangoverDate);
-    // console.log('Drinks After Previous Hangover:', drinksAfterPreviousHangover);
-    // console.log('Drinks Before Previous Hangover:', drinksBeforePreviousHangover);
-
-        // setTotalHangoverScores(totalScores);
         
         const tonightAlcoholConsumption = drinksAfterPreviousHangover.reduce((accumulator, drink) => {
           return accumulator + (drink.type.alcohol * drink.numConsumptions);
@@ -74,17 +60,11 @@ function HangoverPrediction () {
 
         const tonightDrinkTypes = new Set(drinksAfterPreviousHangover.map((drink) => drink.type.name)).size;
 
-        // console.log('Tonight Alcohol Consumption:', tonightAlcoholConsumption);
-        // console.log('Total Alcohol Consumption:', totalAlcoholConsumption);
-        // console.log('Tonight Drink Types:', tonightDrinkTypes);
-
         // adding variable drink types increases hangover
         const estimatedHangoverScore = ((tonightAlcoholConsumption*(totalHangoverScores/userHangovers.length))+(tonightDrinkTypes*0.1) / ((totalAlcoholConsumption)/userHangovers.length));
         
-
         setEstimatedHangoverScore(Math.min(Math.max(estimatedHangoverScore.toFixed(2), 0), 10));
         console.log('hangover score: ', estimatedHangoverScore);
-
         
       } catch (err) {
         console.log(err)
@@ -95,12 +75,12 @@ function HangoverPrediction () {
       <>
         {(userHangovers.length > 0 && addedDrinks.length>0) && (
           <>
-            <h4>Tomorrow's predicted hangover:</h4>
+            <h4>Tomorrow's expected hangover:</h4>
     
             <Line
               percent={estimatedHangoverScore * 10}
-              strokeWidth={2.5}
-              trailWidth={2.5}
+              strokeWidth={3.2}
+              trailWidth={3.2}
               strokeColor={setHangoverColor(estimatedHangoverScore)}
             />
             <h3>{estimatedHangoverScore} / 10</h3>

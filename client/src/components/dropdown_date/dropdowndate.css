@@ -1,11 +1,8 @@
 .filter-menu {
-    /* display: flex; */
     align-items: center;
     justify-content: flex-end;
-    /* margin-right: 20px; */
     position: relative;
 }
-
 
 #timeFilter {
     padding: 5px;
@@ -16,20 +13,6 @@
     justify-content: flex-end;
 }
 
-.menu-options {
-    /* padding-top: 20px; */
-}
-
 #filter-info {
-    /* padding-top: 10px; */
     padding-bottom: 10px;
 }
-
-/* .filter-menu-options {
-    margin: 0
-} */
-
-/* .menu-options {
-    position: absolute;
-    margin: 0;
-} */
