@@ -1,9 +1,6 @@
 const Types = require('./Type');
 
-// Define an array of drink types (predefined drinks with data) and add them to db; don't allow duplicates
-
 async function addDrinkTypes() {
-    
 const drinkTypes = [
     
   // beers

@@ -1,5 +1,4 @@
 const Drink = require('../models/Drink');
-const Type = require('../models/Type');
 
 async function postDrink (req, res) {
   try {

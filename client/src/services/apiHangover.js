@@ -1,8 +1,8 @@
-const url = 'http://localhost:4000/api';
+const url = process.env.REACT_APP_APP_URL;
 
 export async function postHangover(newHangover) {
     try {
-        const response = await fetch(`${url}/hangovers`, {
+        const response = await fetch(`${url}/api/hangovers`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
@@ -23,7 +23,7 @@ export async function postHangover(newHangover) {
 
 export async function getUserHangovers(userId) {
     try {
-        const response = await fetch(`${url}/hangovers/user/${userId}`, {
+        const response = await fetch(`${url}/api/hangovers/user/${userId}`, {
             method: "GET",
             headers: {
                 'Content-type': 'application/json'

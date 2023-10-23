@@ -9,7 +9,6 @@ import { filterDrinksByDate, filterHangoversByDate } from '../../utils/utils';
 import 'react-circular-progressbar/dist/styles.css';
 import './filteredstats.css';
 
-// DIRTY
 
 function FilteredStats() {
   const { user } = useAuth();

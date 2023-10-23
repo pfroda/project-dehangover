@@ -13,7 +13,7 @@ function ListDrinks() {
   useEffect(() => {
     getDrinks(user.id);
     getHangovers(user.id)
-  }, []);
+  }, [userDrinks]);
 
   // userDrinks, user.id // USER DRINKS!!!!!!
   

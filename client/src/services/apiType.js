@@ -1,8 +1,8 @@
-const url = 'http://localhost:4000/api';
+const url = process.env.REACT_APP_APP_URL;
 
 export async function getTypes() {
    try {
-    const response = await fetch(`${url}/type`);
+    const response = await fetch(`${url}/api/type`);
     const data = await response.json();
     return data;
 

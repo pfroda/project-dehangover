@@ -15,21 +15,22 @@ function HangoverPrediction () {
   // const [totalAlcohol, setTotalAlcohol] = useState(0);
 
   const [addedDrinks, setAddedDrinks] = useState([])
-
-
   const [estimatedHangoverScore, setEstimatedHangoverScore] = useState(0);
 
 
   useEffect(() => {
-    getDrinks(user.id);
-    getHangovers(user.id);
-    
-  }, [user.id])
+    async function fetchData() {
+      await getDrinks(user.id);
+      await getHangovers(user.id);
+      calculatePrediction();
+    }
+
+    fetchData();
+  }, []); // Fetch data 
 
   useEffect(() => {
-    // Calculate hangover score when userDrinks or userHangovers change
     calculatePrediction();
-  }, []); //deleted userDrinks, userHangovers
+  }, [userDrinks, userHangovers]); // Calculate prediction when userDrinks or userHangovers change
 
     async function calculatePrediction() {
       try {
@@ -53,18 +54,25 @@ function HangoverPrediction () {
         const tonightAlcoholConsumption = drinksAfterPreviousHangover.reduce((accumulator, drink) => {
           return accumulator + (drink.type.alcohol * drink.numConsumptions);
         }, 0);
+        console.log(drinksBeforePreviousHangover)
+        console.log(drinksAfterPreviousHangover)
+        console.log(tonightAlcoholConsumption)
 
         const totalAlcoholConsumption = drinksBeforePreviousHangover.reduce((accumulator, drink) => {
           return accumulator + (drink.type.alcohol * drink.numConsumptions);
         }, 0);
 
-        const tonightDrinkTypes = new Set(drinksAfterPreviousHangover.map((drink) => drink.type.name)).size;
+        console.log('total alcohol lasts hang', totalAlcoholConsumption);
 
+        const tonightDrinkTypes = new Set(drinksAfterPreviousHangover.map((drink) => drink.type.name)).size;
+        console.log('tonight drink types', tonightDrinkTypes)
+        
         // adding variable drink types increases hangover
         const estimatedHangoverScore = ((tonightAlcoholConsumption*(totalHangoverScores/userHangovers.length))+(tonightDrinkTypes*0.1) / ((totalAlcoholConsumption)/userHangovers.length));
-        
+        console.log('estimated hangover', estimatedHangoverScore)
         setEstimatedHangoverScore(Math.min(Math.max(estimatedHangoverScore.toFixed(2), 0), 10));
         // console.log('hangover score: ', estimatedHangoverScore);
+        console.log('calc', Math.min(Math.max(estimatedHangoverScore.toFixed(2), 0), 10))
         
       } catch (err) {
         console.log(err)

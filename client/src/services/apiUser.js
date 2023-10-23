@@ -1,8 +1,8 @@
-const url = 'http://localhost:4000/api';
+const url = process.env.REACT_APP_APP_URL;
 
 export async function createUser (user) {
   try {
-    const response = await fetch(`${url}/signup`, {
+    const response = await fetch(`${url}/api/signup`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -19,7 +19,7 @@ export async function createUser (user) {
 
 export async function loginUser (user) {
   try {
-    const response = await fetch(`${url}/signin`, {
+    const response = await fetch(`${url}/api/signin`, {
       method: "POST",
       headers: {
         "Content-type": "application/json"

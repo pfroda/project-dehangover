@@ -12,11 +12,10 @@ async function getTypes (req, res) {
 }
 
 async function getSelectedType (req, res) {
-  // Get the 'q' query parameter for the search query
   const { q } = req.query; 
 
   try {
-    // Perform a case-insensitive search
+    // Perform a case-insensitive search for the search query
     const types = await Type.find({ name: { $regex: q, $options: 'i' } }); 
     res.json(types);
     

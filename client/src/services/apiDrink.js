@@ -1,13 +1,13 @@
-const url = 'http://localhost:4000/api';
+const url = process.env.REACT_APP_APP_URL;
 
 export async function postDrink(newDrink) {
   try {
-    const response = await fetch(`${url}/drinks`, {
+    const response = await fetch(`${url}/api/drinks`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(newDrink), // Pass the new drink object directly
+      body: JSON.stringify(newDrink),
     });
 
     if (!response.ok) {
@@ -23,7 +23,7 @@ export async function postDrink(newDrink) {
 
 export async function getUserDrinks(userId) {
     try {
-      const response = await fetch(`${url}/drinks/user/${userId}`, {
+      const response = await fetch(`${url}/api/drinks/user/${userId}`, {
         method: 'GET',
         headers: {
             'Content-type': 'application/json',
