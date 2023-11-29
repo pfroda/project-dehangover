@@ -1,15 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from './context/AuthContext';
-import { useDrink } from './context/DrinksContext';
-import { useEffect, useState } from 'react';
-import Signup from './pages/Signup';
-import Signin from './pages/Signin';
-import Welcome from './pages/Welcome';
-import Calendar from './pages/Calendar';
-import Drinks from './pages/Drinks';
-import Stats from './pages/Stats';
-import Header from './components/header/Header';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { useAuth } from "./context/AuthContext";
+import { useDrink } from "./context/DrinksContext";
+import { useEffect, useState } from "react";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import Welcome from "./pages/Welcome";
+import Calendar from "./pages/Calendar";
+import Drinks from "./pages/Drinks";
+import Stats from "./pages/Stats";
+import Header from "./components/header/Header";
+import "./App.css";
 
 function App() {
   const { user } = useAuth();
@@ -33,10 +38,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route
-            path="/drinks"
-            element={<Drinks />}
-          />
+          <Route path="/drinks" element={<Drinks />} />
           <Route
             path="/stats"
             element={
@@ -45,7 +47,7 @@ function App() {
               ) : userDrinks.length > 0 ? (
                 <Stats />
               ) : (
-                <Navigate replace to={'/welcome'} />
+                <Navigate replace to={"/welcome"} />
               )
             }
           />
